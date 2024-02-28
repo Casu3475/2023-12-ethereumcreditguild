@@ -1,0 +1,4340 @@
+==============================================================
+Guild: Code4rena
+Channel: ARCHIVE-Q4-2023 / ethcreditguild-dec11
+==============================================================
+
+[11/27/2023 21:19] knownfactc4_29311 (pinned)
+👋 Hello and welcome to the audit channel for the $90,500 USDC **Ethereum Credit Guild** audit!
+
+📆 Audit opens 12/11/2023 20:00 (20:00 UTC) and runs through 12/28/2023 20:00 (20:00 UTC) (17 days).
+
+Please give a warm welcome to the Ethereum Credit Guild team, particularly @Eswak, who will be available for questions either here in the channel or via DM in the Central European timezone.
+
+We'll be posting relevant links, documentation, etc. here, so if you intend to participate in this audit, consider enabling notifications for this channel. 🐺 ⏰
+
+Audit Page: https://code4rena.com/contests/2023-12-ethereum-credit-guild
+
+{Reactions}
+👋 (28) 🫡 (10) 🇭 (8) ℹ️ (6) 
+
+[11/27/2023 21:19] knownfactc4_29311
+Pinned a message.
+
+
+[12/11/2023 20:02] C4 (pinned)
+****Automated Findings / Publicly Known Issues****
+
+Reminder: all [Automated Findings / Publicly Known Issues](https://github.com/code-423n4/2023-12-ethereumcreditguild#automated-findings--publicly-known-issues) are out of scope and ineligible for awards.
+
+{Embed}
+https://github.com/code-423n4/2023-12-ethereumcreditguild
+GitHub - code-423n4/2023-12-ethereumcreditguild
+Contribute to code-423n4/2023-12-ethereumcreditguild development by creating an account on GitHub.
+Code4rena - ARCHIVE-Q4-2023 - ethcreditguild-dec11 [1178757898218774619].txt_Files/f0a4d12c-7ddc-4dad-9792-2d44e0f688c4-00CC0
+
+{Reactions}
+✅ (6) 
+
+[12/11/2023 20:07] thebrittfactor
+Pinned a message.
+
+
+[12/11/2023 20:08] onetruekirk
+🖖 just wanted to thank all wardens for your time and attention to the codebase
+
+
+[12/11/2023 20:09] onetruekirk (pinned)
+@Eswak is your go to for code-level questions but I am also available to discuss the lending model, parameterization, intended behavior of the system and so on
+
+{Reactions}
+✅ (16) 🪝 
+
+[12/11/2023 20:11] itsmetechjay
+Pinned a message.
+
+
+[12/11/2023 20:20] theschnilch
+Is it true that users themselves never own GUILD token? Can these only be minted by the SurplusGuildMinter and then weighted to a gauge, or is there another way for the user to get the GUILD tokens themselves?
+
+
+[12/11/2023 20:51] onetruekirk
+There is a pre existing supply of 1 billion GUILD tokens, of which some are allocated to team and investors, some allocated to users of the old volt protocol v1, and some available for incentives after the project launch. The full breakdown will be public and all vesting onchain. The token will not be transferable at launch, but will be usable in the gauges or for governance votes
+
+{Reactions}
+👍 
+
+[12/11/2023 20:59] doogiedog
+Is line 185 from guildToken.sol supposed to have amount commented out?'
+
+
+[12/11/2023 20:59] nmirchev8
+Hey, about the governance we have one timelock for all governors and two `GuildVetoGovernor`s (One for standard proposals and one for lending term proposals)?
+
+
+[12/11/2023 21:03] onetruekirk
+We will have to wait for @Eswak to answer this one
+
+
+[12/11/2023 21:04] onetruekirk
+There’s a distinct timelock for lending term onboarding vs general governance, see here:
+
+{Reactions}
+✅ 
+
+[12/11/2023 21:04] onetruekirk
+https://credit-guild.gitbook.io/introduction/governance
+
+{Embed}
+https://credit-guild.gitbook.io/introduction/governance
+Governance
+The past and future of token voting
+Code4rena - ARCHIVE-Q4-2023 - ethcreditguild-dec11 [1178757898218774619].txt_Files/RkmXNAuz8ikecIGvClrW-A356F.png
+
+
+[12/11/2023 21:05] onetruekirk
+This is so that onboarding and offboarding of lending terms can be accomplished more quickly than code changes
+
+{Reactions}
+✅ (2) 
+
+[12/11/2023 21:06] onetruekirk
+(He is on Central European time fwiw)
+
+
+[12/11/2023 21:06] nmirchev8
+Thanks!
+
+
+[12/11/2023 21:14] doogiedog
+Glad we get some actual time on this one!
+
+
+[12/11/2023 21:17] eswak
+The team multisig will have the RATE_LIMITED_GUILD_MINTER role and will use it to distribute the supply initially. We also may deploy contracts with this role to claim airdrops in the future. There will be users with GUILD in their wallet directly
+
+
+[12/11/2023 21:18] eswak
+The variable is commented because unnused variables create a compilation warning and this variable is not used (`_beforeTokenTransfer` is a hook from OZ's ERC20 implementation & we don't use the third parameter)
+
+
+[12/11/2023 21:19] eswak
+I believe this page will help you : https://credit-guild.gitbook.io/introduction/governance
+
+There are 2 timelocks, 2 governors, and 4 veto governors in the deployed system (+ offboarding contract that looks a bit like a governor)
+
+(green is for votes with the GUILD token, blue is for votes with the credit token gUSDC)
+
+{Attachments}
+Code4rena - ARCHIVE-Q4-2023 - ethcreditguild-dec11 [1178757898218774619].txt_Files/spaces2FfzMdp0yM8XIbpZXK4aNC2Fuploads2Fp3x-EBD1D.png
+
+
+[12/11/2023 21:20] _theblackpanther
+Setup was smooth, just ran tests. Will start digging soon 😉
+
+{Reactions}
+🔥 (3) 
+
+[12/11/2023 21:21] eswak
+I know Kirk answered some questions already but I'll check this channel often 🙂 I'll also answer DMs but if you believe your question can help others, feel free to ask in the shared channel & @ me, it's helpful to search for past clarifications. I'm based in France so GMT+1 (it's 22:21 rn), will be afk for a few hours soon
+
+{Reactions}
+👍 (2) 
+
+[12/11/2023 22:53] escrow1337
+sent fr @Eswak 🙂
+
+
+[12/12/2023 00:35] 0xfave
+What does "mark down with unpausing withdrawals" mean when bad debt is incurred? @OneTrueKirk
+
+
+[12/12/2023 00:36] onetruekirk
+Normally lenders who want to withdraw, or borrowers will access liquidity through the PSM (peg stability module). During a liquidation auction redemption, but not minting in PSM is paused so that no one can front run any loss that is realized. After the auction concludes, any loss is marked down, and then the PSM unpaused
+
+
+[12/12/2023 00:37] onetruekirk
+Mainstream existing lending markets like Compound or Aave allow front running in the case of bad debt; see the Fuse hack incident for an example where this happened in practice
+
+
+[12/12/2023 00:38] 0xfave
+Got you.
+
+But when the contract is paused.
+
+How do you distribute the bad debt? Because the native lending made it to be the last to withdraw
+
+
+[12/12/2023 00:42] onetruekirk
+There’s a global variable called the credit multiplier (one for each denomination/credit token instance) representing the exchange rate between the PSM asset (USDC, ETH, etc) and the debt asset (gUSDC, gETH, etc). This exchange rate also applies to all debt positions. So if a 50% loss is realized, all the lenders are equally marked down (now you can mint 2 gUSDC with one USDC if before you could mint 1), and it costs borrowers the same to repay their debt (before you owed 1 gUSDC worth 1 USDC, now you owe 2 gUSDC worth 1 USDC)
+
+{Reactions}
+👍 (3) 
+
+[12/12/2023 01:44] 0xfave
+Trying to run coverage and it's requesting for fork-url
+ Where can I input that @Eswak
+
+
+[12/12/2023 01:49] 0xstalin
+I did directly in the package.json, replace the $FORK_URL variable for the url of your rpc endpoint
+
+
+[12/12/2023 01:50] 0xfave
+facing this error
+
+{Attachments}
+Code4rena - ARCHIVE-Q4-2023 - ethcreditguild-dec11 [1178757898218774619].txt_Files/image-0D2AF.png
+
+
+[12/12/2023 01:50] 0xstalin
+@OneTrueKirk  @Eswak Opening a private thread with y'all 🫡
+
+
+[12/12/2023 01:52] 0xstalin
+should looks like this
+
+{Attachments}
+Code4rena - ARCHIVE-Q4-2023 - ethcreditguild-dec11 [1178757898218774619].txt_Files/image-73CE0.png
+
+
+[12/12/2023 01:52] 0xfave
+Done
+
+
+[12/12/2023 01:52] 0xfave
+But facing this error
+
+{Reactions}
+🤔 
+
+[12/12/2023 02:12] 0xnirlin
+:dance_vibe:
+
+
+[12/12/2023 02:12] 0x11singh99
+@OneTrueKirk  was those private audits for this same code in scope ? ,and finings from those audits have been fixed in this? Or for someother part of codebase.
+
+
+[12/12/2023 02:16] onetruekirk
+Same codebase, the fixes resulted in some simplification and removals
+
+
+[12/12/2023 02:18] 0x11singh99
+ok. Findings from those audits have been fixed in this code. thanks
+
+{Reactions}
+👍 (3) 
+
+[12/12/2023 02:19] 0xstalin
+Are public the result of those private audits?
+
+
+[12/12/2023 02:38] onetruekirk
+There aren’t published audit reports and it’s not directly relevant to the current code since a model change occurred, but I am happy to discuss it. Roughly;
+
+In the old model, loans could be called at any time before a term was offboarded, with the caller providing a call fee as collateral, very similar to Ajna. Based on the result of the liquidation auction, this would either be reimbursed or remitted to the borrower as compensation if called when not in the danger zone.
+
+Unfortunately this didn’t work because once called, a borrower could just refinance the loan. If we tried to fix it by pausing borrowing on a term when a loan was permissionlessly called, an attacker could grief the protocol by opening and calling their own small borrowing positions.
+
+In the end we restricted offboarding to a quorum of GUILD holders to make griefing more difficult + removed the call fee.  Although this is one step more permissioned than I had initially intended, it conforms to the existing trust model of the protocol (reliant on honest minority of GUILD holders to reject bad lending terms)
+
+
+[12/12/2023 04:20] kaden3328
+should the protocol support ERC777 or other callback tokens?
+
+
+[12/12/2023 04:38] onetruekirk
+We assume that collateral tokens are standard ERC20, for rebasing or fee on transfer tokens a wrapper would be required
+
+
+[12/12/2023 04:38] onetruekirk
+We would use a standard wrapper where available like wstETH, or could make a wrapper if it were necessary and desired
+
+
+[12/12/2023 04:44] nmirchev8
+So there is credit veto gov for each credit token? (ETH, USDC) 
+And always the same amount of quorum is needed?
+
+
+[12/12/2023 04:55] onetruekirk
+It’s not necessarily always the same amount, as each would have a separate veto Governor contract
+
+
+[12/12/2023 04:56] onetruekirk
+Initially there will be just one credit token and it will look like this, you can imagine the duplication for additional tokens:
+
+
+[12/12/2023 04:58] onetruekirk
+
+
+{Attachments}
+Code4rena - ARCHIVE-Q4-2023 - ethcreditguild-dec11 [1178757898218774619].txt_Files/726282AC-FDE2-4A44-8794-C74D43DBD7A4-45673.jpg
+
+
+[12/12/2023 04:59] nmirchev8
+Thank you! 
+I though that we need 5M for each credit token, because of the diagram, but now I get it!
+
+
+[12/12/2023 05:00] onetruekirk
+It’s also possible it could be deployed in a more standalone way, but my default assumption is a shared timelock with veto modules for each credit token
+
+{Reactions}
+✅ (2) 
+
+[12/12/2023 05:00] kaden3328
+but if there were a collateral token that had callbacks, e.g. an ERC777 token, presumably it wouldn't be onboarded as part of a lending term or with a PSM module, right?
+
+
+[12/12/2023 05:02] onetruekirk
+Agreed, if we or others using this code did want to onboard a non standard token as collateral, a wrapper should be used
+
+
+[12/12/2023 05:07] sweetcat0118
+
+
+{Attachments}
+Code4rena - ARCHIVE-Q4-2023 - ethcreditguild-dec11 [1178757898218774619].txt_Files/image-3CE49.png
+
+
+[12/12/2023 05:07] sweetcat0118
+How can I fix this error?
+
+
+[12/12/2023 05:14] aerialraider
+I cant submit a finding , says Internal server error. Try again
+
+
+[12/12/2023 05:19] nmirchev8
+What is actually the `gaugeType`?
+
+
+[12/12/2023 05:33] onetruekirk
+Please check in with the code4rena team if this issue persists
+
+
+[12/12/2023 05:33] onetruekirk
+Gauge type means different borrow assets
+
+{Reactions}
+🙏 ✅ (3) 
+
+[12/12/2023 06:11] mrosas
+Hi I have dmed u
+
+
+[12/12/2023 06:23] onetruekirk
+I can’t assist with setup errors but @Eswak may be able to when he is online in a couple hours
+
+
+[12/12/2023 07:15] eswak
+If you look at the `coverage:unit` (no fork, unit tests) and `coverage:integration` commands (fork, `$ETH_RPC_URL` env variable) in `package.json`, there are 2 ways to generate coverage. I'm not sure why you get these JSON errors, maybe try another RPC ? It happened to me on Sepolia because I didn't have a good enough RPC (it hit the rate limit or something)
+
+
+[12/12/2023 07:23] eswak
+I'm able to reproduce, looking into it now
+
+
+[12/12/2023 07:29] sweetcat0118
+I setted env file
+
+
+[12/12/2023 07:30] sweetcat0118
+
+
+{Attachments}
+Code4rena - ARCHIVE-Q4-2023 - ethcreditguild-dec11 [1178757898218774619].txt_Files/image-7A5F1.png
+
+
+[12/12/2023 07:55] debofx
+Save yoir report and clear cache. Or try submitting a shorter report.
+
+
+[12/12/2023 07:56] 0xfave
+used a different rpc from infura and alchemy and its still sending the json errors
+
+
+[12/12/2023 08:01] eswak
+you're trying to run the integration tests right ? (`npm run test:integration` or `npm run coverage:integration`)
+
+
+[12/12/2023 08:06] 0xfave
+npm run coverage:integration
+
+
+[12/12/2023 08:10] 0xfave
+while `npm run test:integration` failed too
+
+
+[12/12/2023 08:45] 14si2o_flint
+Somewhat similar problem from my side, all tests run flawlessly, except test:integration ones. I get :
+
+{Attachments}
+Code4rena - ARCHIVE-Q4-2023 - ethcreditguild-dec11 [1178757898218774619].txt_Files/image-FD73F.png
+
+{Reactions}
+👆 
+
+[12/12/2023 08:58] eswak
+seems to be a concurrency issue while reading/writing to `protocol-configuration/addresses.json`... not sure why that started to appear, I ran the tests & coverage before code freeze last thursday 😅 I have the error locally too. You should be able to run non-forked tests just fine (`npm run test:unit`), and if you'd like to run locally / see the coverage, here is how to (dirty) fix the tooling & here is the coverage result for integration tests (& unit tests). I'll see with the code4rena team how/if I can push a code change to fix the tooling of integration tests
+
+{Attachments}
+Code4rena - ARCHIVE-Q4-2023 - ethcreditguild-dec11 [1178757898218774619].txt_Files/coverage-integration-755C7.png
+Code4rena - ARCHIVE-Q4-2023 - ethcreditguild-dec11 [1178757898218774619].txt_Files/coverage-unit-AC206.png
+Code4rena - ARCHIVE-Q4-2023 - ethcreditguild-dec11 [1178757898218774619].txt_Files/integration-tooling-fix-4444C.png
+Code4rena - ARCHIVE-Q4-2023 - ethcreditguild-dec11 [1178757898218774619].txt_Files/lcov-integration-C8D66.info
+
+{Reactions}
+🔥 
+
+[12/12/2023 09:02] 0xfave
+Not only you mate
+
+{Reactions}
+👍 (2) 
+
+[12/12/2023 09:26] mrosas
+pm thx
+
+
+[12/12/2023 09:53] anmol.eth
+Do you have any diagram explaining the flow of the system with different user actions?
+
+
+[12/12/2023 09:59] eswak
+closest I'd have would be https://credit-guild.gitbook.io/introduction/smart-contracts but it doesn't focus on user actions
+
+{Embed}
+https://credit-guild.gitbook.io/introduction/smart-contracts
+Smart contracts
+Code4rena - ARCHIVE-Q4-2023 - ethcreditguild-dec11 [1178757898218774619].txt_Files/cVvvwsrL3YSESvhUk7dR-6E44C.png
+
+{Reactions}
+❤️ (5) 👍 
+
+[12/12/2023 10:34] 14si2o_flint
+With "likely will free more than 'votes'", could you elaborate on what exactly the "more" is? Delegators/Delegatees?
+
+{Attachments}
+Code4rena - ARCHIVE-Q4-2023 - ethcreditguild-dec11 [1178757898218774619].txt_Files/image-13582.png
+
+
+[12/12/2023 10:36] eswak
+If a user has 3000 tokens, 3 delegations of 1000 tokens each, and attempts to transfer/burn 1500 tokens, the loop will free delegations in chunks of 1000 so the user ends up freeing 2000 voting power, transfers out 1500 tokens, and remains with 500 undelegated votes and only one of the 3 delegations of 1000 tokens still active
+
+
+[12/12/2023 10:36] maslarovk
+@Eswak  sent FR, sir
+
+{Reactions}
+✅ 
+
+[12/12/2023 10:38] 14si2o_flint
+Ok so the line should be understood as "so likely will free more votes then requested" ?
+
+{Reactions}
+✅ 
+
+[12/12/2023 10:53] 0xnirlin
+where can I find previous audit report
+
+
+[12/12/2023 10:53] 0xnirlin
+?
+
+
+[12/12/2023 10:57] infectedfuture
+Can you give some details about interpolatedValue (what is used for) ?
+From what I understand, from a known starting point p_last, we want to get to a desired point p_desired, and the output is a value at t=now that would lead to that p_desired if the slope is maintained
+
+
+[12/12/2023 10:59] eswak
+https://discord.com/channels/810916927919620096/1178757898218774619/1183961130075435129
+
+
+[12/12/2023 11:04] eswak
+that behavior description is correct 
+
+It is used in 2 locations :
+- for the unminted rewards 
+- for the rebasing share price
+when someone (likely the ProfitManager contract) distributes tokens to rebasing addresses, everyone's balance and the totalSupply does not go up immediately, the distributed amount is interpolated over a duration and the values go up smoothly (linearly of the distributed amount + what was left to interpolate in the previous distribution)
+
+{Reactions}
+✅ (2) 
+
+[12/12/2023 12:33] santipu_
+Why the decision of having a distribution period (30 days) when distributing rewards via `ERC20RebaseDistributor`, doesn't make more sense to just distribute rewards instantly?
+
+
+[12/12/2023 13:01] 0xsimeon
+I don't know why but I have already set `ETH_RPC_URL`  in .env
+
+{Attachments}
+Code4rena - ARCHIVE-Q4-2023 - ethcreditguild-dec11 [1178757898218774619].txt_Files/Screenshot_2023-12-12_at_1.57.59_PM-4C338.png
+
+
+[12/12/2023 13:03] 14si2o_flint
+I had the same issue, used literal values in package.json and then it works fine.
+
+
+[12/12/2023 13:16] eswak
+Then anyone could atomically :
+- flashloan USDC somewhere
+- mint gUSDC, enter rebase
+- repay a loan (and the profit that goes to lenders makes everyone rebase up instantly)
+- repay flashloan
+This would allow the loan repayer to pocket most of the interest if they flashloan a large amount & represent a majority of the rebasing supply
+
+I agree it sucks because it complicates the code a lot, but this is needed to prevent griefing I think
+
+{Reactions}
+🤔 (3) 👌 (3) 
+
+[12/12/2023 13:26] 0xsimeon
+if the rewards are distributed 30 days after, how does it help with the flash loan simulation you described above? just to confirm.
+
+
+[12/12/2023 13:26] 0xsimeon
+Worked for me. thank you.
+
+{Reactions}
+👍 (2) 
+
+[12/12/2023 13:30] eswak
+if the rewards are distributed over 30 days, every block only "drips" a tiny amount of rewards (by adjusting the share price through an interpolation), so the user who repays cannot "sandwich" their interest payment with a large deposit/withdrawal into gUSDC
+
+
+[12/12/2023 13:31] eswak
+rewards are not distributed _after_ 30 days, they are distributed _over_ 30 days
+
+
+[12/12/2023 14:26] aerialraider
+still can submit anything
+
+
+[12/12/2023 14:26] aerialraider
+cant
+
+
+[12/12/2023 14:44] nmirchev8
+Who is responsible for `addGauge`, `removeGauge`, `setMaxGauge`?
+
+
+[12/12/2023 14:49] 0xfave
+How did you do it?
+
+
+[12/12/2023 14:51] itsmetechjay
+is the submission form not working for you? are you seeing an error?
+
+
+[12/12/2023 14:52] eswak
+- `addGauge` is managed by the role identified by `GAUGE_ADD`, which is granted to `LendingTermOnboarding`
+- `removeGauge` is managed by the role identified by `GAUGE_REMOVE`, which is granted to `LendingTermOffboarding`
+- `setMaxGauge` is managed by the role identified by `GAUGE_PARAMETERS`, which is granted to the DAO timelock
+
+{Reactions}
+❤️ (2) 
+
+[12/12/2023 14:55] nmirchev8
+Amazing, thanks!
+
+
+[12/12/2023 14:55] 0xsimeon
+add url directly to `package.json`
+
+{Attachments}
+Code4rena - ARCHIVE-Q4-2023 - ethcreditguild-dec11 [1178757898218774619].txt_Files/Screenshot_2023-12-12_at_3.31.27_PM-1D739.png
+
+
+[12/12/2023 14:56] 0xfave
+okay thanks
+
+
+[12/12/2023 15:00] aerialraider
+@Jay | C4 it errors out when you submit it.. the form is working
+
+
+[12/12/2023 15:05] itsmetechjay
+Ok thank you - we'll flag for our devs.
+
+
+[12/12/2023 15:19] sovaslava9
+Hello. What does it mena "There is a one day period during which the vote is in timelock and subject to veto, after which it becomes eligible for stakers to increase its debt ceiling" https://credit-guild.gitbook.io/introduction/governance/propose-a-lending-term    How "increase its debt ceiling" connect to propose a lending term? I think lending-term is struct about Loan terms, like tariff..
+
+{Embed}
+https://credit-guild.gitbook.io/introduction/governance/propose-a-lending-term
+Propose a Lending Term
+Code4rena - ARCHIVE-Q4-2023 - ethcreditguild-dec11 [1178757898218774619].txt_Files/mJLmEtgNj1inCN4a4CbE-3FEF1.png
+
+
+[12/12/2023 15:21] santipu_
+@Eswak The `ProfitManager` contract is intended to work with various `LendingTerms` or with only one?
+- If it works with only one `LendingTerm`, why have both variables `termSurplusBuffer` and `surplusBuffer` at the same time?
+- If it works with more than one `LendingTerm`, why have only one reference for `credit` token?
+
+
+[12/12/2023 15:27] eswak
+`ProfitManager` works with multiple`LendingTerm`s
+
+`termSurplusBuffer` is specific to individual lending terms, and `surplusBuffer` is a global buffer for the entire system. In the case of a loss, `termSurplusBuffer` is depleted first, then `surplusBuffer`, then the `creditMultiplier` is adjusted down (loss to lenders)
+
+`ProfitManager` references just one `credit` token because there is one `ProfitManager` and one `credit` token per market (and multiple `LendingTerm`s per market)
+
+{Reactions}
+👍 
+
+[12/12/2023 15:28] forkforkdog
+offtop: any specific package u used to generate this automatically?
+
+
+[12/12/2023 15:28] eswak
+I used draw.io and did it manually (hence why it might not be perfectly up to date... I just noticed some contracts are called VoltXYZ instead of GuildXYZ for instance)
+
+
+[12/12/2023 15:29] forkforkdog
+Looks great thx this helps
+
+{Reactions}
+🫡 
+
+[12/12/2023 15:33] kartoonjoy
+Wardens, please try to submit your issue(s) now. If good, please give a 👍 to this message. If still an issue, give a 👎. Thanks!
+
+{Reactions}
+👍 (2) 👎 
+
+[12/12/2023 15:59] sovaslava9
+How lending term  could be disapproved? or its not possible? after when it was approved
+
+
+[12/12/2023 16:02] eswak
+See `src/governance/LendingTermOffboarding.sol`
+
+
+[12/12/2023 16:11] 0xsaviour_
+@Eswak  will users be able to deploy markets at launch?
+
+
+[12/12/2023 16:14] rumenb
+i couldn't see the automated findings report; if i have found an issue and submitted it before the automated findings were out and then they come out and my finding is in them do i get rewarded?
+
+
+[12/12/2023 16:15] kartoonjoy
+anything in the automated findings is out of scope
+
+
+[12/12/2023 16:16] rumenb
+are there any consequences after submitting the issue when its in the automated findings and you didn't see it?
+
+
+[12/12/2023 16:16] 0x3b
+you can always remove it
+
+
+[12/12/2023 16:17] rumenb
+yeah i mean like what if i miss it
+
+
+[12/12/2023 16:17] 0x3b
+no
+
+
+[12/12/2023 16:17] rumenb
+and not see it in the automated findings
+
+
+[12/12/2023 16:17] rumenb
+oh nice
+
+
+[12/12/2023 16:17] 0x3b
+but don't spam the judge
+
+{Reactions}
+💯 
+
+[12/12/2023 16:17] rumenb
+yeah, of course
+
+
+[12/12/2023 16:17] rumenb
+just a gas optimization that i found, might be worth something
+
+
+[12/12/2023 16:18] kartoonjoy
+since this question isnt specific to this audit, if theres more conversation needed, can we take it to a different channel, please?
+
+{Reactions}
+❤️ 
+
+[12/12/2023 16:18] rumenb
+no more questions, just that
+
+{Reactions}
+thankyou hi5 
+
+[12/12/2023 16:18] rumenb
+thanks
+
+
+[12/12/2023 16:25] eswak
+I expect to do it myself, there is no "helper" to deploy a market yet
+
+Then the DAO timelock would need to grant the appropriate roles to the contracts of the new market
+
+{Reactions}
+👍 
+
+[12/12/2023 16:26] infectedfuture
+any idea why I get this?
+
+{Attachments}
+Code4rena - ARCHIVE-Q4-2023 - ethcreditguild-dec11 [1178757898218774619].txt_Files/image-EEABA.png
+
+
+[12/12/2023 16:28] eswak
+might be because everything reverts, how does it look when you try to run the integration tests ? errors on running integration tests has been discussed here https://discord.com/channels/810916927919620096/1178757898218774619/1184056744138260480
+in the mean time, you can run coverage:unit, the integration tests do not cover lines that aren't covered by unit tests
+
+
+[12/12/2023 16:37] infectedfuture
+my bad, that was because of the path. Don't know if its because I'm on windows, but I need to remove '  ' around paths :
+- don't work : `"forge test --match-path './test/unit/**' -vvv"`
+- work : `"forge test --match-path ./test/unit/** -vvv"`
+
+{Reactions}
+👍 (2) 
+
+[12/12/2023 18:34] babs2833
+ERC20Gauges.sol:
+
+```js
+    /// @notice a mapping from users to gauges to a user's allocated weight to that gauge
+    mapping(address => mapping(address => uint256)) public getUserGaugeWeight;
+```
+
+Anytime a valid user address exists, and a valid gauge address exists, but the user hasn't interacted with the gauge at all, the weight will be 0 for that user, and for this mapping? So this happens often/by default when a gauge address first exists?
+
+
+[12/12/2023 18:41] babs2833
+*nvm I think the user may have to first interact with the gauge in some capacity for it to be added to the mapping in the first place?... I'll look more into this lmao sorry
+
+
+[12/12/2023 18:47] eswak
+yes the value of the storage slot is 0 until the user increment their gauge weight for it for the first time (and it can become 0 again if they decrement the weight they allocate to this gauge completely)
+
+{Reactions}
+👍 (2) 
+
+[12/12/2023 22:06] Message Wolf#0225 (pinned)
+**Automated Findings / Publicly Known Issues**
+
+Automated findings output for the audit can be found [here](https://gist.github.com/code423n4/b163f40c3e5fa9eeec74277c19861de8).
+
+*Note for C4 wardens: Anything included in the automated findings output is considered a publicly known issue and is ineligible for awards.*
+
+
+[12/12/2023 22:12] thebrittfactor
+Pinned a message.
+
+
+[12/13/2023 02:40] anmol.eth
+What does it mean by `global debt ceiling` and how it is different from the debt ceiling of a particular gauge?
+
+
+[12/13/2023 02:50] 0xdemonnn
+create a private thread, hope both of you check it if have a time @Eswak@OneTrueKirk
+
+
+[12/13/2023 02:54] norah7603
+what is `peg stability module` ?
+
+
+[12/13/2023 03:10] onetruekirk
+Global debt ceiling is the maximum amount that can be borrowed across all lending terms. In the early period it is used to set a maximum borrowed amount during the guarded launch. In the future it can be used to rate limit borrowing to help protect the protocol against malicious borrows
+
+
+[12/13/2023 03:12] onetruekirk
+Peg stability module is a term derived from MakerDAO, it is both how lenders deposit and withdraw, and where borrowers access liquidity
+
+(Lender deposits USDC, ETH, etc, receives gUSDC, gETH, etc as appropriate as deposit receipt. Borrower provides collateral, mints gUSDC etc, then redeems it in the PSM for the underlying
+
+{Reactions}
+👍 
+
+[12/13/2023 03:38] anmol.eth
+Is this represented as hardCap in lendingTerm?
+
+
+[12/13/2023 03:39] onetruekirk
+The hard cap is on a per lending term basis
+
+
+[12/13/2023 03:40] onetruekirk
+That has a separate purpose of ensuring a single lending term cannot exceed a safe limit based on liquidity or other factors, even if a lot of people stake on it after it was approved
+
+{Reactions}
+✅ 
+
+[12/13/2023 03:43] anmol.eth
+Where can I find the use of the global debt ceiling in the code ?
+
+
+[12/13/2023 05:20] almurhasan
+@OneTrueKirk  dm you
+
+
+[12/13/2023 05:50] nmirchev8
+Who will responsible for `GAUGE_PNL_NOTIFIER` role?
+
+
+[12/13/2023 06:30] 0xstalin
+The LendingTerm contracts 🙂
+
+{Reactions}
+❤️ (2) ✅ 
+
+[12/13/2023 07:03] eswak
+it is the rate limited credit minter bufferCap
+
+
+[12/13/2023 07:19] almurhasan
+eswak dm you
+
+
+[12/13/2023 09:58] _theblackpanther
+damn these bots will make the researchers jobs obsolete :kekdrive:  or maybe will make them better?
+
+{Reactions}
+👍 
+
+[12/13/2023 11:25] 14si2o_flint
+Well, many of the lows in the report are stuff that "can" happen, but imho aren't qualified to be a valid finding.
+
+
+[12/13/2023 11:31] cholakovv
+@Eswak can you check dm pls?
+
+
+[12/13/2023 11:51] nmirchev8
+Hey, can you confirm if the system is supposed to have one `SimplePSM` contract per `CreditToken`?
+
+
+[12/13/2023 11:51] nmirchev8
+Or it is per `lendingTerm`?
+
+
+[12/13/2023 11:54] santipu_
+I think it's one `SimplePSM` per `CreditToken`. 
+There can be various lending terms per `CreditToken` with different collateral tokens and different parameters.
+
+{Reactions}
+✅ (5) 
+
+[12/13/2023 11:55] santipu_
+But you only need one `SimplePSM` per `CreditToken` to mantain peg with it's pegged token (USDC <> gUSDC)
+
+{Reactions}
+✅ (4) 
+
+[12/13/2023 11:58] nmirchev8
+Thanks!
+
+
+[12/13/2023 14:04] eswak
+going through the messages now
+
+{Reactions}
+✅ 
+
+[12/13/2023 15:53] babs2833
+In `ERC20RebaseDistributor::updateTotalRebasingShares()` lines 210-225?
+
+Are the comments saying:
+`delta` = 0.25, (1.5 - 1.25) (targetValue = 1.5?)
+ `shareBefore` = 1,
+ `shareAfter` = 2, 
+`currentRebasingSharePrice` = 1.25,
+
+--> `targetNewSharePrice` =  `(1.25 + (0.25 * 1 / 2) = 1.375` (Equation from percentChange & targetNewSharePrice)
+
+I think this is correct after stumbling thru... I'll leave it here for corrections or references...
+
+{Reactions}
+👍 
+
+[12/13/2023 15:58] eswak
+FYI I added a documentation page explaining how the `AuctionHouse` works : https://credit-guild.gitbook.io/introduction/smart-contracts/auctions
+
+{Attachments}
+Code4rena - ARCHIVE-Q4-2023 - ethcreditguild-dec11 [1178757898218774619].txt_Files/image-FFBF0.png
+
+{Reactions}
+🔥 (11) 👍 (3) 
+
+[12/13/2023 16:00] infectedfuture
+Is there a reason not to enter rebase for a user ? (as there's both mint & mintAndEnterRebase)
+
+
+[12/13/2023 16:06] eswak
+no I think most users will enter rebase. Our UI will call mintAndEnterRebase for first deposit. It's mainly for smart contracts that might not support rebase, or arbitrageurs that want to minimize gas cost of credit token transfers
+
+{Reactions}
+✅ 
+
+[12/13/2023 16:11] viraz4331
+hey @Eswak any update regarding fix for the integration test error ?
+
+
+[12/13/2023 16:23] eswak
+not yet sorry
+
+
+[12/13/2023 17:20] infectedfuture
+@Eswak , DM'd you, when you'll have time :thankyou:
+
+{Reactions}
+✅ 
+
+[12/13/2023 21:17] 0x_6a70
+so gauge == lending term?
+
+{Reactions}
+❤️ (2) 🙏 
+
+[12/13/2023 21:58] eswak
+✅ correct
+
+{Reactions}
+👍 (4) 
+
+[12/14/2023 01:55] guy_in0xnito
+So gauge type means different types of lending terms ?
+
+{Reactions}
+✅ (5) 
+
+[12/14/2023 03:59] nmirchev8
+Inside `ERC20RebaseDistributor` what is actually `sharePrice`?
+
+
+[12/14/2023 05:19] guy_in0xnito
+What does interpolated value mean and what does the struct represent in erc20rebasedistributor ?
+
+
+[12/14/2023 05:21] guy_in0xnito
+I think that is the value of each token at a particular point after/before rebase
+
+
+[12/14/2023 05:22] guy_in0xnito
+Not so sure though!
+
+
+[12/14/2023 05:29] nmirchev8
+I think it the struct is only for readability, because to calculate value for current timestamp, we always need those 4 params
+But I am confused about `price` and `value` in terms of what are calculated
+
+
+[12/14/2023 05:31] guy_in0xnito
+Is it done for getting a good understanding of what is happening after rebasing ?
+
+
+[12/14/2023 05:39] nmirchev8
+Not a 100%, but it used to calculate the pending value for current timestamp in terms of the whole duration period. (val = 100 & it should be distributed in 30 days, so to calculate what amount is distributable on day X - we need all 4 params to track the time of the duration and value) And basically this is core for all functionalities
+
+
+[12/14/2023 06:56] eswak
+gauge type is to support multiple markets (all lending terms of the gUSDC market will have type 1, all lending terms of the gWETH market will have type 2, etc)
+
+{Reactions}
+🇾 (3) 
+
+[12/14/2023 06:57] eswak
+when a user enters rebase, their balance is converted to a number of shares internally, and their balance is sharePrice * nShares. Then as distributions happen, the share price increases, so their balance increase
+
+{Reactions}
+✅ 
+
+[12/14/2023 06:58] eswak
+(going through the messages now)
+
+
+[12/14/2023 07:24] guy_in0xnito
+Is the shares actually representing "no of tokens per share".  Or like a percentage  amount of tokens he owns from total supply  ?
+
+
+[12/14/2023 07:25] eswak
+share price is like a "number of tokens per share"
+
+
+[12/14/2023 07:26] eswak
+quoting my friend the LLM:
+> The shares represent the quantity of rebasing shares an individual owns, not a percentage of the total token supply. In a rebasing token system, the number of shares held by a user denotes their proportion of the total rebasing pool. When rebases occur, the number of tokens corresponding to each share can change to maintain the overall supply target, but the share count itself indicates the relative ownership within that rebasing system.
+
+
+[12/14/2023 07:28] anmol.eth
+How lenders provide a USDC(any liquidity token) into the system? or they don't?
+
+
+[12/14/2023 07:36] eswak
+lenders provide liquidity by calling SimplePSM.mint. Doing this call will exchange their USDC to gUSDC. Then borrowers post collateral on lending terms, borrow gUSDC, and can call SimplePSM.redeem to get liquidity
+
+
+[12/14/2023 08:18] 14si2o_flint
+So there is then a 1-to-1 relationship between PSM & CreditToken? for each type of credit token (gUSD, gDAI, etc..) there will be a specific PSM contract deployed?
+
+
+[12/14/2023 08:20] anmol.eth
+Now if user have gUsdc they will have to get GUILD from surplusGuildMinter and provide that guild to increment the weight of the lending term?
+
+
+[12/14/2023 08:21] anmol.eth
+Or what am i missing here?
+
+
+[12/14/2023 08:21] 14si2o_flint
+That is an option but not an obligation unless I'm misunderstanding something.
+
+{Reactions}
+✅ 
+
+[12/14/2023 08:22] eswak
+correct
+
+
+[12/14/2023 08:22] anmol.eth
+What could be the another option to increase a gauge weight? Or they can just have gusd and let it rebase?
+
+
+[12/14/2023 08:22] eswak
+they could also just choose to hold the gUSDC and enterRebase(), to hold passively & earn yield from the interest paid by borrowers
+
+
+[12/14/2023 08:25] anmol.eth
+So if they can earn a passive yield just by holding gusdc why would they want to provide weight in gauge and expose to slashing risks?  Maybe a stupid question but just trying to graps the things.
+
+
+[12/14/2023 08:30] eswak
+it's not the same individuals who will do both things. A borrower might want to stake a bit of first-loss capital to increase the debt ceiling of a specific term & borrow there for instance. GUILD rewards is also a different source of yield so there may be a higher or lower earning by doing this action over the other, it all depends on the current state of the protocol & the chosen parameters for profit distribution
+
+
+[12/14/2023 10:46] 0xsaviour_
+Both lenders and borrowers provide the same collateral, but what actions make a difference after?
+e.g in MakerDao
+ - Lenders: Lock collateral to earn stability fees and participate in governance. They are essentially providing liquidity to the system and earning interest on their locked assets.
+- Borrowers: Lock collateral to generate DAI for their use. They are essentially utilizing the locked collateral to gain access to the stablecoin for various purposes, such as trading, payments, or other DeFi activities.
+@Eswak
+
+
+[12/14/2023 10:48] eswak
+what we call 'lenders' is users who provide USDC to the PSM to get gUSDC and enter the savings rate (enterRebase)
+what we call 'borrowers' is users who provide collateral (sDAI, wstETH, etc) to borrow gUSDC in LendingTerms and redeem these for USDC in the PSM
+
+
+[12/14/2023 10:51] 0xsaviour_
+I assumed the collateral for both is same, but clear now 👍
+
+{Reactions}
+👍 
+
+[12/14/2023 12:41] xeroskim
+What is minBalance in _shares2balance for? Don't understand why rebasedBalance is capped within minBalance.
+
+
+[12/14/2023 12:45] eswak
+because when a user enters rebase, their number of shares is rounded down, so this could otherwise make their balance go down by 1 wei if there was no minimum
+
+
+[12/14/2023 13:14] 0xsaviour_
+Set of contracts managed by core contract will be deployed to create a one type of market?
+
+
+[12/14/2023 13:15] 0xsaviour_
+All the markets will be separate independtly except governance, am I getting it right? @Eswak
+
+
+[12/14/2023 13:19] eswak
+right, all markets will share the same Core & GuildToken
+
+{Reactions}
+👍 
+
+[12/14/2023 14:22] anmol.eth
+Why do we need `setContractExceedMaxDelegates`?
+
+
+[12/14/2023 14:25] eswak
+The `setContractExceedMaxDelegates` method allows for setting an exception to this rule for specific contracts. It essentially allows certain approved contracts (like smart contracts that play a specific role in governance systems or DAOs) to have more delegates than the limit prescribed by `maxDelegates`. This is used for greater flexibility in special cases where the limit needs to be exceeded without changing the rule for all users.
+
+{Reactions}
+✅ 
+
+[12/14/2023 14:33] babs2833
+In `ERC20MultiVotes::_delgate()` it looks like there can only ever be up to 1 delegate max for a delegator? (Unless the contract can exceed max delegates?)
+
+
+[12/14/2023 14:34] babs2833
+"This is meant for backward compatibility with the `ERC20Votes` and `ERC20VotesComp` interfaces from OpenZeppelin." Oh that has some information : )
+
+
+[12/14/2023 14:37] 0xsaviour_
+Guild token holders:
+- staking credit tokens
+- Airdrop (distribution as incentive)
+Any other way a user can have guild tokens?
+
+
+[12/14/2023 14:41] nmirchev8
+But staking credit tokens doesn't provide them with GUILD? It is only to allocate weight?
+
+
+[12/14/2023 14:41] i8cyanide
+:code4ren
+
+
+[12/14/2023 14:45] 0xsaviour_
+
+
+{Attachments}
+Code4rena - ARCHIVE-Q4-2023 - ethcreditguild-dec11 [1178757898218774619].txt_Files/image-0EA07.png
+
+{Reactions}
+✅ 
+
+[12/14/2023 14:49] anmol.eth
+I think by minting they mean minting to the `surplusGuildMinter` itself on behalf of user. and that minted token is added to gauge as a user weight.
+
+{Attachments}
+Code4rena - ARCHIVE-Q4-2023 - ethcreditguild-dec11 [1178757898218774619].txt_Files/image-AF4F0.png
+
+
+[12/14/2023 14:49] anmol.eth
+i could be wrong.
+
+
+[12/14/2023 14:50] eswak
+when staking credit tokens, one can access GUILD tokens in 2 ways : some are minted on the SurplusGuildMinter & can only be used to do gauge votes, some are earned as rewards & go directly in the user's wallet
+
+
+[12/14/2023 14:53] eswak
+when borrowers pay interests, the SurplusGuildMinter, because it is voting in the gauges with its GUILD tokens, earns some part of these credit tokens as rewards. These rewards are forwarded to the users who staked, and they also get on top of that an amount of GUILD tokens (that is the amount of credit rewards * the reward ratio)
+
+
+[12/14/2023 14:59] anmol.eth
+So they get both CREDIT token and GUILD for the same earned amount?
+
+
+[12/14/2023 14:59] anmol.eth
+GUILD is kind of a bonus reward?
+
+
+[12/14/2023 14:59] eswak
+yes
+
+
+[12/14/2023 15:02] 0xsaviour_
+The Guild tokens earned as a reward could be used to vote in gauge or could be redeemed in `SimplePSM:redeem()`?
+
+
+[12/14/2023 15:03] eswak
+they could be used to vote in gauges, it is gUSDC tokens that can be redeemed in SimplePSM
+
+
+[12/14/2023 15:04] 0xsaviour_
+oh okay, thanks for clarifying
+
+
+[12/14/2023 15:41] cholakovv
+a loan.closeTime of 0 means that the loan has not been closed right?
+
+
+[12/14/2023 15:49] 0xjcn
+Am I correct in assuming that the `SurplusGuildMinter` would likely be amongst one of the contracts that will be approved to exceed the maximum number of gauges that normal participants are bound to? i.e. setting `canExceedMaxGauges[SurplusGuildMinter] = true`
+
+
+[12/14/2023 15:51] eswak
+correct
+it's actually what's done in the de protocol deployment script: https://github.com/code-423n4/2023-12-ethereumcreditguild/blob/main/test/proposals/gips/GIP_0.sol#L480-L483
+
+{Reactions}
+👍 
+
+[12/14/2023 15:51] eswak
+correct
+
+{Reactions}
+✅ 
+
+[12/14/2023 15:51] gladita
+is the intent that, even if you have a loan with partial repayments, you pay interest on the full borrowed amount (even if you have repaid part)? and interest never capitalizes?
+
+
+[12/14/2023 15:54] eswak
+interest never capitalizes and when there is a partial repayment, part of it is reducing the principal of the loan so the loan debt is not the initial borrowed amount anymore
+
+
+[12/14/2023 16:14] gladita
+but the loan struct notes says borrowAmount = initial credit amount and then borrowAmount is used to calculate the interest owed (without an adjustment for repayments)
+
+
+[12/14/2023 16:14] 0x3b
+What is the loan opening fee for? Is it ment to be some sort of protocol fee?
+
+
+[12/14/2023 16:15] 0x3b
+Or just another form of profit that will get sent to the stakers (like the interest)?
+
+
+[12/14/2023 16:29] santipu_
+It's not protocol fee, the opening fee is added to the interest at the time the borrower opens the loan
+
+{Reactions}
+❤️ ✅ 
+
+[12/14/2023 16:36] elcid2000
+Will one `ProfitManager` be deployed for every different gauge? Or is it just a 1 to many relationship?
+
+
+[12/14/2023 16:39] santipu_
+One ProfitManager per market (gUSDC). 
+Various LendingTerms (gauges) per market
+
+{Reactions}
+🫡 ✅ 
+
+[12/14/2023 17:21] johnnytime
+For every lending term there is going to be:
+- LendingTerm.sol (OpenZeppelin Clone)
+- SimplePSM.sol
+- ProfitManager.sol
+?
+
+
+[12/14/2023 17:22] johnnytime
+Thanks 🙂
+
+
+[12/14/2023 17:26] santipu_
+Not for every lending term, but for every market. E.g. gUSDC market
+
+
+[12/14/2023 17:26] santipu_
+Market in the code is represented as `gaugeType`
+
+{Reactions}
+✅ 
+
+[12/14/2023 17:26] johnnytime
+What's the different between a market and a lending term?
+
+
+[12/14/2023 17:26] johnnytime
+I thought that lending term == market == gauge
+
+
+[12/14/2023 17:26] santipu_
+term == gauge
+
+
+[12/14/2023 17:26] santipu_
+One market can have various terms
+
+
+[12/14/2023 17:27] johnnytime
+so confusing 🤔
+
+{Reactions}
+😢 (3) 
+
+[12/14/2023 17:27] santipu_
+With different parameters like collateral token, maxDebtPerCollateralToken, interestRate, maxDelayBetweenPartialRepay...
+
+
+[12/14/2023 17:28] santipu_
+And users can choose which term to borrow from depending on those params
+
+
+[12/14/2023 17:28] johnnytime
+Is there a diagram / video that explains the whole structure?
+
+
+[12/14/2023 17:28] johnnytime
+Of the protocol? Not the contracts
+
+
+[12/14/2023 17:28] johnnytime
+Thanks for the answers, btw!
+
+
+[12/14/2023 17:29] johnnytime
+There could be like 10 lending terms for one market (e.g gUSDC) I would imagine it like AAVE, but I guess it's very different
+
+{Reactions}
+👍 
+
+[12/14/2023 17:29] johnnytime
+Hard to imagine since there is no UI / diagram / Video
+
+
+[12/14/2023 17:29] santipu_
+There's only the [docs](https://credit-guild.gitbook.io/introduction/), the c4 page and the repo itself
+
+{Reactions}
+👍🏻 
+
+[12/14/2023 17:30] 0xnevi
+@JohnnyTime this is your best bet
+
+https://credit-guild.gitbook.io/introduction/smart-contracts
+
+
+[12/14/2023 17:31] 0xnevi
+But I went ahead and mapped out the flow myself and suggest you could do the same, helps alot with understanding the flow
+
+
+[12/14/2023 17:31] johnnytime
+Yeah saw that one, but it's not super clear, and also - some contracts are missing like `onboardLendingTerm.sol`
+
+
+[12/14/2023 17:32] 0xnevi
+Yea, probably require a few days to fully grasp the underlying integrations between contracts
+
+{Reactions}
+💪🏻 
+
+[12/14/2023 17:32] johnnytime
+Indeed
+
+
+[12/14/2023 17:33] johnnytime
+Oh man I drew too many diagrams already 😅
+
+{Reactions}
+🔥 (4) 
+
+[12/14/2023 17:42] infectedfuture
+From what I understand, 1 market is composed of:
+- 1 creditToken (e.g: gUSDC)
+- 1 PSM:  lender can deposit USDC and get gUSDC, or borrower can redeeem gUSDC against USDC
+- N term:  borrow gUSDC against a collateral (sDAI, wstETH, etc). 1 collateral = 1 term
+
+{Reactions}
+✅ (7) 🗒️ 
+
+[12/14/2023 17:43] eswak
+I'd be happy to get that privately after the contest 😅 🙏
+
+{Reactions}
+❤️ 
+
+[12/14/2023 17:44] eswak
+thx a lot for correctly answering a bunch of questions @santipu_
+
+
+[12/14/2023 17:44] 0xnevi
+I did a written flow though, I'm not a visual learner haha so probably would not be helpful to you at all, because it is PAGES long
+
+
+[12/14/2023 17:45] eswak
+correct
+
+
+[12/14/2023 17:45] santipu_
+And:
+- 1 ProfitManager
+- 1 RateLimitedMinter (gUSDC)
+
+Right @Eswak ?
+
+
+[12/14/2023 17:49] infectedfuture
+(same understanding)
+
+
+[12/14/2023 17:50] 0x3b
+So in total these contract are gonna be deployed per term/market?
+- PSM
+- Profit manager
+- Lending term - (*we clone the original with OZ clones*)
+- Credit token
+- Rate limited minter
+- Surplus guild minter
+- Lending term Off-boarding 
+- Lending term On-boarding
+- Auction house
+
+{Reactions}
+👀 (2) 
+
+[12/14/2023 17:53] eswak
+correct
+
+
+[12/14/2023 17:54] eswak
+new LendingTerm() has only to be done once (it's an implementation) then a bunch of proxy clones point to the implementation
+
+
+[12/14/2023 17:55] eswak
+and in the future we'll have multiple implementations (you can tell because LendingTermOnboarding has a whitelist of implementations and not just an implementation reference) but that's not part of the scope
+
+
+[12/14/2023 18:01] santipu_
+And I think also:
+- SurplusGuildMinter
+
+
+[12/14/2023 18:07] 0x3b
+will add it
+
+
+[12/14/2023 18:07] 0x3b
+wow quite a lot for a single market D:
+
+
+[12/14/2023 18:09] eswak
+to be fair when I first wrote the codebase, it was supposed to be only 1 market 😅
+
+
+[12/14/2023 18:56] santipu_
+And also we forgot:
+- LendingTermOffboarding
+- LendingTermOnboarding
+
+
+[12/14/2023 18:57] 0x3b
+ah man this whole protocol needs to be deployed per market D:
+
+
+[12/14/2023 18:57] 0x3b
+so much gas
+
+
+[12/14/2023 18:58] 0x3b
+Anything else 😂
+
+
+[12/14/2023 18:58] 0x3b
+Or should I just write the audit scope as "to be deployed per market"
+
+
+[12/14/2023 19:17] 0xsaviour_
+What I understood is that `LendingTermOnboarding`  and `LendingTermOffboarding` are governance contracts for different LendingTerms which manage the lifecycle of many `LendingTerm` Contracts.
+
+As we can see the mapping for implementation in both the contracts to keep track of different LendingTerms.
+
+So they need not to be deployed per market and will be deployed once only for the entire protocol.
+
+@Eswak Correct me if I'm wrong.
+
+{Reactions}
+👍 
+
+[12/14/2023 20:09] infectedfuture
+`LendingTermOnboarding` has immutable variables for `ProfitManager`, `creditToken` & `creditMinter`, which are unique to a market
+
+
+[12/14/2023 20:10] infectedfuture
+so I would say there's one `LendingTermOnboarding ` per market too
+
+{Reactions}
+✅ (3) 👍 
+
+[12/14/2023 20:14] santipu_
+Exactly, same for `LendingTermOffboarding`, it has an immutable variable for `PSM`, that is unique to a market
+
+{Reactions}
+👍 (2) ✅ (2) 
+
+[12/14/2023 20:16] takarez
+when you repay a loan, its repaid, how about when you call?
+
+
+[12/14/2023 20:25] infectedfuture
+when a loan is called, an auction starts: https://credit-guild.gitbook.io/introduction/smart-contracts/auctions
+
+{Reactions}
+✅ 
+
+[12/14/2023 20:52] eswak
+if that helps : I had this sheet with a sequence of user actions & how some protocol state changes after the actions
+
+{Attachments}
+Code4rena - ARCHIVE-Q4-2023 - ethcreditguild-dec11 [1178757898218774619].txt_Files/image-A4206.png
+
+
+[12/14/2023 20:55] eswak
+and this one for the growth of debt ceiling of 2 terms, each having 50% gauge weight & a 1.2e18 gauge tolerance
+
+{Attachments}
+Code4rena - ARCHIVE-Q4-2023 - ethcreditguild-dec11 [1178757898218774619].txt_Files/image-A3FE9.png
+
+
+[12/14/2023 20:56] eswak
+https://docs.google.com/spreadsheets/d/1yTSHd7AlCQjK5KrMIjHQuH2Ppq7uQeG-FH-oU1ou0-M/edit
+
+{Reactions}
+❤️ (11) 
+
+[12/14/2023 21:06] habib0x
+someone mistakenly submitted an issue in github 
+https://github.com/code-423n4/2023-12-ethereumcreditguild/issues/2
+
+{Embed}
+https://github.com/code-423n4/2023-12-ethereumcreditguild/issues/2
+Vulnerability in transfer and transferFrom that will result in Loss...
+Lines of code 2023-12-ethereumcreditguild/src/governance/ProfitManager.sol Line 252 in 2376d9a CreditToken(credit).transferFrom(msg.sender, address(this), amount); 2023-12-ethereumcreditguild/src/g...
+Code4rena - ARCHIVE-Q4-2023 - ethcreditguild-dec11 [1178757898218774619].txt_Files/2-EBC63
+
+
+[12/14/2023 21:08] infectedfuture
+guy stuck in 2021
+
+{Reactions}
+😂 (13) 
+
+[12/14/2023 21:16] eswak
+also I'd dispute that, OZ implementations (which are inherited) revert on errors & always return true
+
+
+[12/14/2023 21:17] habib0x
+I wonder how many saw that and submitted it silently xD
+
+
+[12/14/2023 21:31] kaden3328
+luckily it's not a juicy one getting leaked
+
+
+[12/14/2023 21:35] stakog
+As I see it, lending terms are equivalent to you going to your local bank to take a loan, and the bank offers you a few loans to choose from, differing in interest rate, reapayment schemes, etc. So all the lending terms (per market) are like a marketplace for loans that borrowers can choose what they see most fit for them. Is this the idea behind lending terms?
+
+{Reactions}
+✅ 👍 
+
+[12/15/2023 00:40] coffiasd
+He may have confused the platforms🤣
+
+
+[12/15/2023 02:31] nonseodion
+@Eswak why does the team prefer require+message errors over custom Solidity errors?
+
+
+[12/15/2023 05:41] anmol.eth
+In terms of voting is this a flow ?: propose -> vote->timelock-veto -> if veto successful -> then cancel execution and if not vetoed -> initially passed proposal will proceed to execution. 
+
+If this is true then there will be two voting period? One when initially proposal was created and another when it passed and get to timelock?
+
+
+[12/15/2023 05:49] 0xstalin
+I would only change the text of the blue actor to "can put the term's collateral", each term can accept different collaterals in exchange to mint gUSDC, it is not enforced that the collateral is always USDC
+
+{Reactions}
+❤️ 👍 
+
+[12/15/2023 05:55] anmol.eth
+
+
+{Attachments}
+Code4rena - ARCHIVE-Q4-2023 - ethcreditguild-dec11 [1178757898218774619].txt_Files/image-4B86B.png
+
+{Reactions}
+🔥 (5) 
+
+[12/15/2023 05:57] 0x3b
+how have you made this style it's really cool
+
+
+[12/15/2023 05:57] 0x3b
+Is it some special font?
+
+
+[12/15/2023 06:01] anmol.eth
+You can use this https://excalidraw.com/
+
+{Embed}
+https://excalidraw.com/
+Excalidraw — Collaborative whiteboarding made easy
+Excalidraw is a virtual collaborative whiteboard tool that lets you easily sketch diagrams that have a hand-drawn feel to them.
+Code4rena - ARCHIVE-Q4-2023 - ethcreditguild-dec11 [1178757898218774619].txt_Files/og-image-2-D16C4.png
+
+{Reactions}
+❤️ 
+
+[12/15/2023 06:21] anmol.eth
+
+
+{Attachments}
+Code4rena - ARCHIVE-Q4-2023 - ethcreditguild-dec11 [1178757898218774619].txt_Files/image-C2CB4.png
+
+{Reactions}
+👍 (6) 🔥 (5) 
+
+[12/15/2023 06:30] nmirchev8
+Isn\t  `RateLimitedMinter`  here for `GUILD`?
+
+
+[12/15/2023 06:32] stryder1496
+Can someone please explain me the auction mechanism , i cant wrap my head around how the auction system offers 100 debt for 0% collateral without incurring a loss
+
+
+[12/15/2023 06:51] 0xsaviour_
+borrower calls `SimplePSM: mint()` for minting debt?
+
+
+[12/15/2023 07:01] anmol.eth
+No one will bid until the collateral they are getting is more than the debt they are required to pay. So in this case if bidder is getting 0% collateral and required to pay 100% debt, no one will bid, slowly with every block the % collateral they get for the amount of debt increases and when it reaches the point where the value of collateral is  > value of debt they are paying the bidding will happen.
+
+I'm still confused on  how and when the slashing of user GUILD will take place.
+
+
+[12/15/2023 07:06] nmirchev8
+It is initialized inside `LendingTerm` in a few functions, which are calling `ProfitManager::notifyPnL`
+
+
+[12/15/2023 07:07] anmol.eth
+can you please explain me, How this loss is calculated?
+
+
+[12/15/2023 07:08] anmol.eth
+I mean when the bad debt will accrue ?
+
+
+[12/15/2023 07:10] nmirchev8
+I just started going trough things inside `LendingTerms`, but on first glimpse I think it is possible to happen inside `onBid`
+
+
+[12/15/2023 07:11] anmol.eth
+will check there
+
+
+[12/15/2023 07:11] nmirchev8
+`forgive` also!
+
+
+[12/15/2023 07:22] 0xstalin
+I think there is 1 RateLimitedMinter for GUILD and another one for CreditToken, correct me if I'm wrong, @Eswak
+
+{Reactions}
+🤔 ✅ (4) 
+
+[12/15/2023 08:08] 0x_6a70
+how does the deposit happen ?
+
+
+[12/15/2023 08:09] eswak
+I prefer because revert messages are more explicit & better displayed, both in most popular wallets & in the console / forge logs. I know it costs more gas (especially if revert message is long), but I don't care, most tx that revert won't get broadcasted in the first place anyway
+
+{Reactions}
+❤️ 
+
+[12/15/2023 08:10] 14si2o_flint
+Through PSM mint / mintAndEnterRebase
+
+{Reactions}
+👍 
+
+[12/15/2023 08:10] eswak
+correct, there is a voting period and then a waiting period while the action is queued in the timelock
+
+
+[12/15/2023 08:12] eswak
+pretty cool, thanks for sharing 🙂
+
+I'd add an arrow between blue person (borrower) to SimplePSM.redeem(), it is expected most borrowers who get gUSDC after borrow will redeem this to USDC in the PSM, USDC is liquid to swap anywhere whereas gUSDC is not (why would anyone provide amm liquidity for gUSDC?)
+
+
+[12/15/2023 08:17] eswak
+correct, just one tweak: the borrower themselves could bid in the auction before it reaches market price, because they get returned both the collateral share of the bidder & the borrower (so they recover their full collateral), this could be a rational action to avoid "arbitrage fees" (nobody external will bid until enough collateral of the borrower goes to them to cover both the debt + the gas fees / slippage to do the liquidation)
+
+when someone bid() in the AuctionHouse, the AH calls back to the LendingTerm.onBid(), that calls back to ProfitManager.notifyPnL, that calls back to GuildToken.notifyGaugeLoss if there is a loss, and that is where the slashing happens (more precisely, that is when tokens are 'marked for slashing' and cannot be transferred anymore, then the slashing has to be realized through GuildToken.applyGaugeLoss)
+
+
+[12/15/2023 08:25] 14si2o_flint
+If I understand it correctly, the two ways of obtaining GUILD tokens are:
+
+- Staking CREDIT tokens
+- Allocation through governance (initial allocation + airdrop?)
+
+Is this correct @Eswak ?
+
+
+[12/15/2023 08:26] eswak
+correct, there will be airdrops / liquidity mining programs of GUILD tokens, and GUILD tokens are also rewarded directly to the user balance through the SurplusGuildMinter. The SGM self-mints GUILD to vote in gauges, but this vote earns a share of the revenues (guildSplit in ProfitManager), and these credit tokens are forwarded to the user who staked credit tokens, and on top of that, the user also get N credit awarded * rewardRatio GUILD tokens in their wallet
+
+
+[12/15/2023 08:30] 14si2o_flint
+Could you elaborate on "also get N credit awarded * rewardRatio GUILD tokens in their wallet"? My understanding is that a staking user receives "creditSplit" + "guildSplit" but what does the N credit correspond to?
+
+
+[12/15/2023 08:30] anmol.eth
+So, in the first phase of the auction the system will try to offer max collateral for all debt -> if the auction is successful in this phase then no bad debt will happen because we are getting every debt for max collateral -> after the first phase the system will start offering less debt to be paid for max collateral -> In this case protocol receives less debt soo bad debt will accrue?
+
+
+[12/15/2023 08:32] eswak
+correct. If bid happens in the very start of the 2nd phase though it's not necessarily creating bad debt, maybe the paid debt is enough to cover the full principal, but only part of the interest cannot be paid (and this case isn't reported as bad debt)
+
+
+[12/15/2023 08:33] anmol.eth
+Thanks
+
+
+[12/15/2023 08:33] eswak
+N credit in my sentence corresponds to the guildSplit earned by the SurplusGuildMinter (that it forwards to the user who staked credit tokens to mint the GUILD)
+
+{Reactions}
+👍 
+
+[12/15/2023 08:52] proxy1967
+What's the difference between `issuance` and `totalBorrowedCredit` ?
+
+
+[12/15/2023 09:03] guy_in0xnito
+What does pegtoken in simplepsm mean ?
+
+
+[12/15/2023 09:03] guy_in0xnito
+Is it the gusdc or any token pegged to a certain token ?
+
+
+[12/15/2023 09:04] 14si2o_flint
+In the current markt it means USDC for gUSDC. But in future markets it could be ETH for gETH. one pegtoken for 1 credit token
+
+{Reactions}
+✅ 
+
+[12/15/2023 09:04] eswak
+`totalBorrowedCredit` is a bit like a sum of all the lending term's issuances (not exactly, but that should help you understand)
+
+
+[12/15/2023 09:08] proxy1967
+I think I understand, thanks
+
+
+[12/15/2023 10:26] infectedfuture
+Just noticed I didn't switch to the C4 repo 😅 , have you made any code change between the original repo last commit (https://github.com/volt-protocol/ethereum-credit-guild) and the C4 repo?
+
+
+[12/15/2023 11:16] eswak
+no, the C4 team asks us to code freeze on public repo also
+
+
+[12/15/2023 11:16] eswak
+so it's the same in the 2 repos
+
+{Reactions}
+👍 
+
+[12/15/2023 11:32] coffiasd
+borrower how to get the extra credit token to pay back ?
+
+
+[12/15/2023 11:39] nmirchev8
+By rebasing functionality of the credit tokens?
+
+
+[12/15/2023 11:47] eswak
+or by providing USDC in the PSM
+
+
+[12/15/2023 11:49] nmirchev8
+But why would borrower ever repay his debt, when he can wait to call it and pay less Credit 🤔
+
+
+[12/15/2023 12:06] elcid2000
+@Eswak Could you please expand on this comment related to `partialRepay`?:
+```some lending terms might also impose periodic partial repayments.```
+
+(edit) - I got it. It has to do with `param.maxDelayBetweenPartialRepay` .
+
+{Reactions}
+✅ 
+
+[12/15/2023 12:10] bluesky_hope_01029
+Interesting question.
+IMO anyone can bid before him and gain more collateral than credit.
+
+{Reactions}
+✅ (3) 💯 (2) 
+
+[12/15/2023 12:44] anmol.eth
+If PSM can mint gUSDC for USDC deposit then why a borrower would want to borrow to get the same gUSDC and pay fees? 
+
+This cannot apply if the collateral token in term is ETH and the user borrow gUSDC.
+
+
+[12/15/2023 12:52] eswak
+I think this feature of "imposing periodic partial repayments" (`maxDelayBetweenPartialRepay` + `minPartialRepayPercent`) is going to be important, because if lending terms are with uncorrelated assets like wstETH no problem, but if it's on correlated assets, we'll need periodic payments. E.g. for a term that allows to borrow 1.0 gUSDC per 1.05 DAI collateral, with 5% interest, after 1 year the loan will become insolvent (debt = 1.05 USDC worth for 1.05 DAI collateral), so we'll require quarterly payments of 1.25% for instance, and either the position remains healthy forever, either the loan missed a partial payment & can be called. This kind of setup is also better for lenders, because interest is realized regularly, and the profit distribution (rebase savings rate) happens regularly too
+
+{Reactions}
+thankyou (2) 
+
+[12/15/2023 12:56] 0xsaviour_
+what will be the market price considered?
+
+
+[12/15/2023 12:57] 0xsaviour_
+the rate at which credit tokens are minting?
+
+
+[12/15/2023 12:57] eswak
+the "market price considered" is the `maxDebtPerCollateralToken` on LendingTerms
+
+{Reactions}
+👍 
+
+[12/15/2023 13:08] 0xnevi
+@Eswak any ideas? Im even more confused because lenders have the additional benefit of gaining profits from savings, interest and staking from credit token obtained
+
+{Reactions}
+☝️ 
+
+[12/15/2023 13:22] 14si2o_flint
+Well that is how all lending markets in Defi like Aave, Compound, Maker, etc.. work. 
+
+I have assets which I do not want to lose but I need liquidity. So I put up X amount of asset as collateral to borrow Y amount of USDC (X>Y) and I have to repay Y + fees to get X returned.
+
+{Reactions}
+👍 
+
+[12/15/2023 13:29] its_muze
+@Eswak `1M GUILD tokens (0.1% of total supply) are required to propose a lending term, and 10M (1% of total supply) to meet quorum during a two day voting period`. please does this mean in general 10m is required to meet quorum or if quorum gets to 10m within two days it can pass?
+
+
+[12/15/2023 13:29] anmol.eth
+Ohh yeah, if user is only staking let's say 100 USDC -> get GUSDC, if the rebasing happen but in the opposite direction(decreasing the amount of gUSDC user holds, it can cause the user lose some of their USDC because you will recieve less USDC for gUSDC you have?
+
+
+[12/15/2023 13:31] 14si2o_flint
+If the loans are correctly repaid on time, you gain money through rebasing & staking. If not, The value of the credit tokens will adjust downwards so that f.e. now you need 110 gUSDC to redeem 100USDC.
+
+
+[12/15/2023 13:38] anmol.eth
+Thanks... Also, what is the benefit for users providing GUILD in gauges? If user just holds gUSDC then they will earn more GUSDC + some GUILD, but if they want to provide GUILD  staking their gUSDC in surplusGuildMinter then what additional rewards they will receive for getting exposed to slashing?
+
+
+[12/15/2023 13:40] 14si2o_flint
+If they want to earn GUILD, they need to stake gUSDC. The benefits, besides the extra revenue, is that they can influence the max/min debt per lending term, thereby helping the market to stay healthy and avoid scenario's where they would be forced to absord bad debt.
+
+{Reactions}
+✅ (2) 
+
+[12/15/2023 13:43] 0xnevi
+Technically speaking, isnt lenders also providing collateral for credit token? I.e “borrowing”
+
+
+[12/15/2023 13:49] anmol.eth
+pretty cool thing...
+
+
+[12/15/2023 13:58] anmol.eth
+I think technically they are borrowing but at the risk of slashing and it is their and all other stakers responsibility to bid on an auction and not let protocol incur a bad debt which will result in loss of their staked capital.  But on the other hand borrower are just putting USDC and getting gUSDC and they are never exposed to slashing, only risk they have is anyone can call their position and dissolve their collateral (or is their is some health factor thing required to call a borrower's postion?)
+
+
+[12/15/2023 14:07] eswak
+the same reason why someone would borrow USDC from ETH collateral on another protocol. The PSM pegToken and lending term collateralToken are not necessarily the same (as you point out, it would be pointless if they were the same)
+
+
+[12/15/2023 14:08] eswak
+10m is required to meet quorum, quorum is a parameter set by governance
+
+{Reactions}
+👍🏽 
+
+[12/15/2023 14:08] 0xnevi
+Thanks for the clarification, so that means there can be multiple PSMs with multiple underlying peg token to a singular credit token, but it doesn't make sense for a lender to provide the same collateral into PSM as to a gauge for borrowing.
+
+
+[12/15/2023 14:10] eswak
+in the USDC market, there is one credit token (gUSDC) and one PSM, and multiple lending terms (each with their own parameters : collateral token, interest rate...)
+
+
+[12/15/2023 14:11] anmol.eth
+There will be market for other tokens, if yes who will add those?
+
+
+[12/15/2023 14:11] 0xnevi
+Oh ok got it sorry for the confusion, so the difference is in the gauge's collateral token to borrow credit token (keeping all other variables constant), am I right to say?
+
+Example: 
+PSM USDC --> gUSDC
+
+LendingTerm:
+any collateral --> gUSDC
+
+{Reactions}
+✅ (2) 
+
+[12/15/2023 14:14] eswak
+yes for instance there could be a WETH market. I'm going to deploy probably but could be anyone. Then the DAO timelock would need to grant the appropriate roles
+
+
+[12/15/2023 14:30] anmol.eth
+To deploy PSM only the peg token and credit need to be different?  it issue gWETH for WETH ?
+
+
+[12/15/2023 15:01] gladita
+is credit multiplier intended to be applied to interest and opening fee (not just principal)?
+
+
+[12/15/2023 15:08] 0x3b
+to disable a gauge you will need to use `LendingTermOffboarding` right?
+
+{Reactions}
+👍 ✅ 
+
+[12/15/2023 15:10] 0xsaviour_
+how many contracts need to be deployed for one market type?
+
+
+[12/15/2023 15:12] 0x3b
+here @0xSaviour_
+
+
+[12/15/2023 15:14] theschnilch
+The CREDIT token should be pegged to, for example, ETH, right? The peg is maintained by the fact that in the event of a loss the credit multiplier becomes smaller and in the event of a profit it is distributed. What if the price of ETH goes up but the collateral in a lending term is USDC. How is the peg maintained then?
+
+
+[12/15/2023 15:17] 0xsaviour_
+what about AcutionHouse
+
+
+[12/15/2023 15:18] 0x3b
+that one too
+
+{Reactions}
+👍 
+
+[12/15/2023 15:22] 0xsaviour_
+Is this correct?
+
+
+[12/15/2023 15:24] 0x3b
+Rate limited minter is per market
+
+
+[12/15/2023 15:24] 0xsaviour_
+Ig there will be separate instance deployed for GuildToken
+
+
+[12/15/2023 15:25] 0xsaviour_
+@Eswak pls confirm
+
+
+[12/15/2023 15:32] 0xsaviour_
+@santipu_
+
+{Attachments}
+Code4rena - ARCHIVE-Q4-2023 - ethcreditguild-dec11 [1178757898218774619].txt_Files/image-0345B.png
+
+{Reactions}
+❤️ ✅ (3) 
+
+[12/15/2023 15:34] 0xsaviour_
+
+
+{Attachments}
+Code4rena - ARCHIVE-Q4-2023 - ethcreditguild-dec11 [1178757898218774619].txt_Files/image-21A9B.png
+
+
+[12/15/2023 15:35] gladita
+anyone know the answer to this? I assumed it would just apply to the principal bc that's how write downs usually work
+
+
+[12/15/2023 15:51] theschnilch
+I think the credit multiplier is also applied to interest, since at the end of the function `getLoanDebt` the `loanDebt` which is principal + interest will be divided by the current loan multiplier.
+
+{Reactions}
+✅ 
+
+[12/15/2023 16:00] gladita
+yeah I saw that and that's why I'm asking but it doesn't seem intuitive
+
+
+[12/15/2023 16:13] stryder1496
+is anyone else also having trouble running the tests ??
+
+
+[12/15/2023 16:13] stryder1496
+I mean a lot of them are failing and in the foundry ones its taking a lot of time
+
+
+[12/15/2023 16:14] 14si2o_flint
+The integration tests are failing for almost everyone, the rest should work fine
+
+
+[12/15/2023 16:21] onetruekirk
+There’s an issue where the integration tests run in parallel and fail, which wasn’t happening when we ran them ourselves but occurs for many who try to. Erwan is working on a PR to fix this
+
+{Reactions}
+👍🏻 
+
+[12/15/2023 17:39] 0xauditism
+in LendingTermOnboarding.t.sol::testProposeOnboard() 
+
+```
+        // mint GUILD & self delegate
+        guild.mint(alice, _PROPOSAL_THRESHOLD);
+        guild.mint(bob, _QUORUM);
+        vm.prank(alice);
+ @>     guild.delegate(alice);
+        vm.prank(bob);
+        guild.incrementDelegation(bob, _QUORUM);
+        vm.roll(block.number + 1);
+        vm.warp(block.timestamp + 13);
+```
+why are we calling the delegate function if alice has enough guild to pass a term proposal ?
+
+
+[12/15/2023 17:40] onetruekirk
+I believe it’s because you need to “delegate” to yourself before voting
+
+{Reactions}
+thankyou ✅ 
+
+[12/15/2023 17:41] onetruekirk
+Erwan can correct me if I’m mistaken
+
+
+[12/15/2023 18:33] 0xauditism
+But why when bob proposes we don't delegate ?
+
+
+[12/15/2023 18:40] onetruekirk
+Pretty sure that guild.incrementDelegation(bob, _QUORUM) is doing this. The original open zeppelin delegation interface only supported delegating or un delegating an account’s entire balance, this function is preserved to keep compatibility with interfaces like Tally, but the incrementDelegation function is the main one we’ll use in our own UI
+
+{Reactions}
+✅ 
+
+[12/15/2023 18:58] 0xauditism
+Thank you !
+
+
+[12/15/2023 22:08] eswak
+there would also be another ProfitManager for the 2nd market
+
+
+[12/15/2023 22:09] eswak
+yes, the intent is to keep a constant `pegToken` value for open loans when the `creditMultiplier` is updated. E.g. if you owed X gUSDC worth 2000 USDC before, you must now owe Y gUSDC still worth 2000 USDC
+
+
+[12/15/2023 22:11] eswak
+when collateral value falls below debt value, GUILD token holders are expected to offboard the term and call all the loans, so everything will go into auction (in your example, bidders would pay gETH to get USDC)
+
+
+[12/15/2023 22:20] slavcheww
+What borrower 4 defaults mean? @Eswak
+
+{Attachments}
+Code4rena - ARCHIVE-Q4-2023 - ethcreditguild-dec11 [1178757898218774619].txt_Files/image-2745B.png
+
+
+[12/15/2023 22:31] 0xstalin
+when a borrower defaults on his debt, it means that the borrower did not pay back the debt, thus, the lender loses all the loaned capital
+
+{Reactions}
+✅ 
+
+[12/15/2023 22:37] slavcheww
+yes, know the term. The question should perhaps be
+
+Why B5 default remove 5323 from ProfitManager.totalBorrowedCredit(), and why B4 default do not remove from there. Maybe because of the auction structure or? A bit confused with this excel 😢
+
+
+[12/16/2023 01:33] 0xsimeon
+Which doc is this
+
+
+[12/16/2023 02:18] babs2833
+https://discord.com/channels/810916927919620096/1178757898218774619/1184962248117059615
+
+
+[12/16/2023 03:39] mrosas
+Hi friends, I have made a simple tweet elaborating rebase tokens using linear interpolation: Do check it out, and correct me if i'm wrong @Eswak @OneTrueKirk https://twitter.com/goheesheng/status/1735857179088064986
+
+
+[12/16/2023 03:40] mrosas
+Started a thread.
+
+
+[12/16/2023 08:36] blckhv
+I feel lost, shouldn't markets be defined by a credit token -> multiple gUSDC lending terms will form one market?
+
+
+[12/16/2023 09:36] infectedfuture
+https://discord.com/channels/810916927919620096/1178757898218774619/1184913235338600448
+This might answer
+
+{Reactions}
+🫡 
+
+[12/16/2023 09:37] infectedfuture
+then we completed below with other contracts that are part of a market
+
+
+[12/16/2023 11:41] proxy1967
+Did you get an audit from certora?
+
+
+[12/16/2023 13:21] 14si2o_flint
+Yes that's exactly the definition of ECG market unless I'm mistaken.
+
+
+[12/16/2023 13:31] 0x_6a70
+a question about the Auction , lets say someone has deposited 100USDC for 100 gUSDC , if nothing is repayed , and the auction starts, the first half is increasing of collateral offered, how exactly does that work?
+
+
+[12/16/2023 13:34] 0xbtk
+https://discord.com/channels/810916927919620096/1178757898218774619/1184524658473709630
+
+{Reactions}
+👍 (2) 
+
+[12/16/2023 13:36] 0x_6a70
+that explains it , perfect thx.
+
+
+[12/16/2023 13:40] jennifer37_32959
+Cool!
+
+
+[12/16/2023 14:33] guy_in0xnito
+Where is the borrowing and repaying the debt happening in psm.sol ?
+
+
+[12/16/2023 14:34] guy_in0xnito
+Nvm figured it out !
+
+
+[12/16/2023 15:58] babs2833
+Anyone else getting whacky numbers for `gaugeProfitIndex` calculations? I'm having trouble understanding what normal numbers are for `gaugeProfitIndex` and `userGaugeProfitIndex`, and what they are accomplishing from a high level
+
+
+[12/16/2023 16:01] babs2833
+Can't seem to make `deltaIndex` anything near correct in order to calculate a proper `creditEarned` 😅 .
+
+(For what its worth the `ProfitManager.t.sol::testProfitDistribution()` makes perfect sense though logically/high level)
+
+
+[12/16/2023 17:04] 14si2o_flint
+I'm a bit stumped on `LendingTermOnboarding : allowImplementation`. If I read this correctly, the DAO must approve a mapping of implementation addresses, otherwise no one can call `createTerm`
+
+But I have no clue what exactly is meant with "implementation"? On what basis are they approved/denied?
+
+
+[12/16/2023 17:08] 0xsl1
+current LendingTerm contract is an implementation to which proxy  clones will point to, in the future there will be multiple implementations, that will have to be whitelisted, but that's not in the scope afaik
+
+{Reactions}
+✅ (2) 
+
+[12/16/2023 17:09] guy_in0xnito
+So a user a  borrower or a lender  can have Guild tokens for governance decision?
+
+
+[12/16/2023 17:13] 14si2o_flint
+So the protocol team will set a LendingTerm as allowed in slot0 of the mapping and everyone who wants to create a term needs to refer to it when calling "createTerm", which will all be clones of that contract.  
+
+Is that right?
+
+
+[12/16/2023 17:15] 0xsl1
+yeah, so a user passes an address of the implementation and it has to be in the mapping basically
+
+
+[12/16/2023 17:16] 14si2o_flint
+Ok that address is then given (the lending term) this should only be changed if there is a fundamental change in the protocol. Got it thanks 🙏
+
+
+[12/16/2023 17:36] noro9954
+Hello @OneTrueKirk @Eswak , may be a stupid question but what does **lending term** mean, also **OffBroading** and **OnBroading ** a lending term ( in DeFi words if possible ) ?
+
+
+[12/16/2023 17:51] 0x3b
+Lending term are the conditions that are put on this market (and are like mini markets).
+
+Example market with USDC so terms can be:
+Term 1
+ - LTV of 95%
+ - borrowers paying interest and a part of the loan every 3 months
+ - interest of 5%
+
+Term 2
+ - LTV of 90%
+ - borrowers paying interest and a part of the loan every 6 months
+ - interest of 10%
+
+OffBoarding is to remove an existing term (most likely it is not profitable or rough market conditions).
+OnBoarding is to add a new term.
+
+{Reactions}
+✅ (4) 
+
+[12/16/2023 17:53] 14si2o_flint
+Fairly certain it's OffBoarding, not OffBroading 😂
+
+{Reactions}
+😹 
+
+[12/16/2023 18:03] 0x3b
+ah xD
+
+
+[12/16/2023 18:09] noro9954
+just a typo 😂
+
+
+[12/16/2023 18:12] patricksfeir
+in an auction, after midpoint has passed, meaning the collateral is worth less than the debt, the full collateral is offered, and less and less debt gets asked. If less debt is asked who will take the loss ?
+
+
+[12/16/2023 18:12] 14si2o_flint
+All the lenders
+
+
+[12/16/2023 18:13] patricksfeir
+If everyone does this, the lenders won't be motivated to lend anymore. so what's the mitigation for it ?
+
+
+[12/16/2023 18:14] patricksfeir
+in other protocols the loan would be overcollateralized, for example at 150% and if it gets lower than 130% the borrower will be liquidated
+
+
+[12/16/2023 18:15] 14si2o_flint
+In ECG, the loans can also be overcollateralized, the degree is specific to each lending term.
+
+
+[12/16/2023 18:16] 14si2o_flint
+Other protocols also use Dutch auctions, bad debt is only created if debt > collateral.
+
+
+[12/16/2023 18:19] patricksfeir
+So the lender needs to agree to these terms. however if (debt > collateral) is happening often it will cause a lot of harm to lenders. Can the borrower get liquidated before his loan duration has run out ?
+
+
+[12/16/2023 18:19] 0xsl1
+i might be wrong, but people voting for the gauge should take the loss and their stake gets slashed if there is a loss, so they are incentivized to prevent bad debt from occurring
+
+{Reactions}
+✅ 
+
+[12/16/2023 18:20] 0x3b
+Are you auditing the protocol?
+
+
+[12/16/2023 18:21] 0x3b
+Or you are an investor?
+
+
+[12/16/2023 18:21] 14si2o_flint
+Also correct, stakers & lenders are incentivized to call a loan as soon as possible. But bad debt gets absorbed through making gUSDC less valuable. So lenders take the hit.
+
+
+[12/16/2023 18:23] babs2833
+are there more than 1 governor? (ex: each market has a governor?) Or just the devs of ECG are the permanent GOVERNOR unless they choose to release the position later?
+
+
+[12/16/2023 18:23] 0xsl1
+makes sense, i was just thinking more about how the loss is realized though call to onBid -> notifyPnL -> notifyGaugeLoss -> slashing 
+So it’s 2 parties taking a loss, lenders since the value of gUSDC gets lower and voters since their stake gets slashed
+
+
+[12/16/2023 18:23] 14si2o_flint
+The dev multisig is the GUARDIAN. GOVERNOR should be the DAO that votes through quorums
+
+{Reactions}
+✅ 
+
+[12/16/2023 18:23] babs2833
+ahh right :)
+
+
+[12/16/2023 18:24] 14si2o_flint
+true but stakers are by definition lenders since they need to stake gUSDC 😄
+
+
+[12/16/2023 18:24] 14si2o_flint
+but yes in finer details it is more complex
+
+
+[12/16/2023 18:26] 0xsl1
+oh yeah, thanks for correcting me, i got confused thinking it's guild token that gets staked, while in reality its a credit one😅
+
+
+[12/16/2023 18:26] 14si2o_flint
+USDC => Mint => gUDSC => stake => GUILD => vote => guildsplit bonus (if not slashed)
+
+{Reactions}
+👍 (2) 
+
+[12/16/2023 18:31] 0xsl1
+I am a little confused with voting for an onBoard, i can see `proposeOffboard` and `supportOffboard` in LendingTermOffboarding, but where does the voting happen for `proposeOnboard` in LendingTermOnboarding?
+
+
+[12/16/2023 18:32] patricksfeir
+So basically they are working as a team to make the final decision. And it each decision, everytime one of the 2 parties will get their stake slashed if they are the minority ? So they can spot a loan that's almost worn out and vote on it to liquidate it  and then the auction starts where the borrower can also bid to avoid any penalities ? @14si2o_Flint @sl1
+
+
+[12/16/2023 18:33] 14si2o_flint
+Through governance, Governer.propose & Governer.castVote. But it's quite a number of crisscrossed contracts so I'm not completely clear on that myself.
+
+{Reactions}
+✅ 
+
+[12/16/2023 18:34] 14si2o_flint
+I would suggest going through test/unit/governance.
+
+
+[12/16/2023 18:36] 0xsl1
+thank you! the governance seems to be the most frustrating part for me rn, will definitely check tests
+
+
+[12/16/2023 18:36] 14si2o_flint
+np! you're not alone on that one 😂
+
+{Reactions}
+😂 
+
+[12/16/2023 18:39] eswak
+see how totalBorrowedCredit() is implemented, it's the total supply of credit minus the redeemable amount in the psm, when B4 defaults the psm has 0 peg tokens
+
+{Reactions}
+✅ 
+
+[12/16/2023 18:42] 0x3b
+Hey what was the difference between `issuance`  and `totalBorrowedCredit`
+
+
+[12/16/2023 18:47] 0xsl1
+as far as I understand it, issuance is the amount of CREDIT issued in a specific term, while totalBorrowedCredit is the sum of all borrowed CREDIT in all terms
+
+
+[12/16/2023 18:49] eswak
+it's annoying and full of spaghetti inheritance but you can learn a lot about standard OpenZeppelin contracts going through it, definitely a knowledge that you'll be able to reuse on other projects 😉
+
+
+[12/16/2023 18:50] 0xsl1
+the first time auditing a codebase with governance, so yeah that's why it's confusing, but defo a good knowledge to get
+
+
+[12/16/2023 18:51] eswak
+amazing to see all these questions / answers & you guys helping each other. That's helping a lot especially on the weekend where I'm less available 🙏
+
+{Reactions}
+hi5 (10) 
+
+[12/16/2023 19:09] gladita
+yes the debt can be called
+
+
+[12/16/2023 20:35] slavcheww
+Who are the gUSDC profit recipients from excel
+
+
+[12/16/2023 22:30] tamayonft
+Xd
+
+
+[12/17/2023 03:41] onetruekirk
+The profit manager has the ability to split the profits it receives between the surplus buffer (protocol wide insurance fund), the GUILD stakers, the gUSDC savers, and an optional fourth recipient intended to permit upgrades, for example forwarding profits to an upgraded profit manager, or sending to a DAO treasury separate from the surplus buffer.
+
+
+[12/17/2023 03:42] onetruekirk
+Echoing Erwan’s appreciation for all of your time and effort. Please give another ping if we drop any threads or don’t notice your message, doing our best to keep up 🫡
+
+
+[12/17/2023 06:12] anmol.eth
+What do DAO_VETO_CREDIT and ONBOARD_VETO_CREDIT mean. does it mean even the credit holders can veto on the proposals with these quorum?
+
+{Attachments}
+Code4rena - ARCHIVE-Q4-2023 - ethcreditguild-dec11 [1178757898218774619].txt_Files/governance_diagram-4E24E.png
+
+
+[12/17/2023 06:28] anmol.eth
+does the borrower of gUSDC have to enterRebase manually?
+
+{Reactions}
+✅ 
+
+[12/17/2023 07:45] eswak
+yes credit holders can veto. These are the name of the contracts set in the protocol deployment file (GIP0, see the readme, deployment file is part of the scope and that can help to see how these contracts are going to be configured ^^)
+
+{Reactions}
+🫡 
+
+[12/17/2023 07:50] anmol.eth
+What is the advantage/disadvantage of not entering user into rebase automatically when borrowing, like we do in SimplePSM `mintAndEnterRebase` ?
+
+
+[12/17/2023 07:59] eswak
+if you're just borrowing to redeem USDC in the PSM, you're only holding gUSDC for a few blocks so rebase rewards do not matter (it could even be done atomically). And it's cheaper to move gUSDC tokens (gas-wise) when you're not rebasing and not delegating voting power
+
+{Reactions}
+👌 
+
+[12/17/2023 09:30] viraz4331
+@Eswak there is 1 profit manager for 1 market right ?
+
+{Reactions}
+✅ 
+
+[12/17/2023 09:40] pxng0lin
+**Question**
+
+Hi Team, 
+
+Where can I find further detailed information related to the surplus buffer?? Is there anything in docs, or could you explain to me the purpose of it please, the impacts if it was to "break" or not be funded, etc?
+
+Thanks
+
+
+[12/17/2023 09:41] pxng0lin
+found a little just now: **protocol wide insurance fund**
+
+
+[12/17/2023 09:55] guy_in0xnito
+In lendingterm, thelendingtermreferance struct points to the creditminter contrat,  which is that ?
+
+
+[12/17/2023 10:00] blckhv
+RateLimitedMinter
+
+{Reactions}
+🇾 
+
+[12/17/2023 10:02] anmol.eth
+Hope this will help in getting overview of credit token
+
+{Attachments}
+Code4rena - ARCHIVE-Q4-2023 - ethcreditguild-dec11 [1178757898218774619].txt_Files/image-454F7.png
+
+{Reactions}
+👍 (6) 
+
+[12/17/2023 10:38] unusual_byte
+@Eswak Dm you
+
+
+[12/17/2023 10:43] 14si2o_flint
+Fairly certain it's limited to one market. The surplus buffer of gUSDC market should not be effected by bad debt grom a gBTC market.
+
+{Reactions}
+✅ 
+
+[12/17/2023 11:08] pxng0lin
+Ok. Thanks. 
+What else do you know, if anything. I'm trying to understand what it's purpose is, if it wasn't there what does it mean to the protocol, what does it save, is it just a pot in case they are hacked or bad debt becomes too much, etc?
+
+
+[12/17/2023 11:23] 0xsl1
+surplusBuffer is a first-loss capital, which absorbs losses before anything. If you take a look in ProfitManager.notifyPnL, you will see that the creditMultiplier only goes down, if the loss is greater than the surplusBuffer
+
+{Reactions}
+👍 (3) ✅ 
+
+[12/17/2023 11:34] blckhv
+Can we rely on the sample values for these 2 variables in RateLimitedV2 specified in the tests?
+```
+    /// @notice the rate per second for this contract
+    uint128 public rateLimitPerSecond;
+
+    /// @notice the cap of the buffer that can be used at once
+    uint128 public bufferCap;
+```
+
+
+[12/17/2023 13:35] theschnilch
+Why isn't the function debtCeiling used in _borrow to calculate _debtCeiling?
+
+
+[12/17/2023 15:13] chinmayf
+Hey @Eswak there is an "Attack ideas" section in the contest description. Are they too "Known Issues" ?
+
+
+[12/17/2023 15:15] takarez
+nope i believe, they are where they want to to focus more i believe.
+
+{Reactions}
+👍 
+
+[12/17/2023 15:24] chinmayf
+Also, DM'ed you @Eswak
+
+
+[12/17/2023 16:13] onetruekirk
+Yes that’s correct, I should have said “market wide”
+
+
+[12/17/2023 16:14] onetruekirk
+Still thinking sometimes in terms of there being only one market at launch, my bad
+
+
+[12/17/2023 16:38] nmirchev8
+Guys, here is a diagram regarding Governance part. It may be helpful for you to visualise:
+https://twitter.com/nmirchev8/status/1736401229377319055
+
+{Reactions}
+🔥 (2) 
+
+[12/17/2023 16:53] gladita
+over time borrowers will need more CREDIT tokens than they originally got to pay interest and opening fee... where will the liquidity for this come from?
+
+
+[12/17/2023 16:57] gladita
+but there is also both a term surplus buffer and a surplus buffer... with a loss, they first deplete the term surplus buffer but then they go to the surplus buffer if they need to. I think the term surplus buffer is the first loss capital the docs refer to.
+
+
+[12/17/2023 17:44] oxwhite
+what does "pos" stand for in erc20multivotes.sol?
+
+
+[12/17/2023 17:50] oxwhite
+does that stand for "point of  struct" in the array?
+
+
+[12/17/2023 17:53] takarez
+check pm pls.
+
+
+[12/17/2023 17:59] 0xstalin
+They can mint the extra CREDIT tokens they need by depositing USDC, or they could also open a new borrow using a different collateral, or they could buy them in the open market 🙂
+
+{Reactions}
+✅ 
+
+[12/17/2023 18:01] 0xstalin
+- `termSurplusBuffer` is the total staked tokens (first loss capital)
+- `surplusBuffer` can be thought as the gains the market has made when borrowers repays their loans
+
+{Reactions}
+✅ 
+
+[12/17/2023 18:36] xors33r
+Was ERC20RebaseDistributor created from scratch or did you use an other Rebase token contract as a base ?
+
+
+[12/17/2023 19:15] takarez
+it seem to be from scratch.
+
+{Reactions}
+👍 ✅ 
+
+[12/17/2023 22:18] mangoeth
+sent a fr @Eswak
+
+
+[12/18/2023 05:05] 0x3b
+Hey what chain are gonna be used?
+
+
+[12/18/2023 05:10] nmirchev8
+I think I saw somewhere Mainnet & Arbitrum, but not sure
+
+{Reactions}
+❤️ 
+
+[12/18/2023 06:05] cholakovv
+
+
+{Attachments}
+Code4rena - ARCHIVE-Q4-2023 - ethcreditguild-dec11 [1178757898218774619].txt_Files/Screenshot_20231218_080443_Chrome-B8B7B.jpg
+
+{Reactions}
+❤️ 
+
+[12/18/2023 06:06] cholakovv
+@Eswak what other L2 chains you plan to use?
+
+
+[12/18/2023 06:18] anmol.eth
+Am I correct in understanding someone with enough GUID can veto the proposals over and over again? So for example:- Let's say majority of GUILD holders propose a lending term that can be profitable but one of the competitor of `ethereum guild protocol` let's say like someone with high stakes in aave can buy enough GUILD to veto all the proposals for new terms. I know this is superficial but want to know how `ethereum guild` thinks of navigating the negative use of `minority voice` through vetoing?
+
+
+[12/18/2023 06:45] 0x3b
+Can we at the same time `mintAndEnterRebase` with PSM and also increase the gauge weight with SGM?
+
+
+[12/18/2023 06:45] 0x3b
+like for the credits to be rebasing and also burned in SGM?
+
+
+[12/18/2023 06:53] 0xstalin
+looks like there is no problem doing this, when you stake in the SGM, the amount to be staked is `transferFrom` the caller, and in the CreditToken contract, when transfering tokens, the function exit rebase before movement (if rebasing), and then, after transfering the tokens, it re-enters rebasing with the remaining tokens
+
+{Reactions}
+❤️ ✅ 
+
+[12/18/2023 06:55] 0xstalin
+Looks like CreditTokens are not burnt in the SGM, only GuildTokens are burnt when unstaking or updating the mintRatio
+
+{Reactions}
+❤️ 
+
+[12/18/2023 07:15] onetruekirk
+Correct, which is why the veto threshold is a key parameter in the system. So far as I have figured, a veto power is the only way to prevent an oracle or other mechanism from reporting a wrong price for loans under certain conditions. In general I think it should be raised over time. In the worse case, the system remains the same or safely winds down, and a new instance with the veto-er forked out can be created for future updates.
+
+{Reactions}
+👍 
+
+[12/18/2023 07:16] blutorque
+@Eswak dmed
+
+
+[12/18/2023 07:18] eswak
+new mints in the PSM
+
+
+[12/18/2023 07:18] eswak
+position in the array
+
+{Reactions}
+👍 
+
+[12/18/2023 07:21] eswak
+probably Optimism, Base, etc
+
+{Reactions}
+👍 
+
+[12/18/2023 07:21] d_auditor
+@Eswak I asked a question in a private thread, do you mind taking a look at it?
+
+
+[12/18/2023 07:24] eswak
+I am going to go through all the DMs and private threads
+
+{Reactions}
+🫡 (3) 
+
+[12/18/2023 07:24] d_auditor
+Alright. Thanks
+
+
+[12/18/2023 07:30] glorys3c
+can somebody explain, how forking will work in this case? Is there any doc for it?
+
+
+[12/18/2023 07:39] eswak
+no docs for it, it's not defined how we'd do it yet. I'd like to formalize forking and deployment of new markets at a later date, let's focus on having one market that works already 😅
+
+{Reactions}
+🫡 
+
+[12/18/2023 11:49] proxy1967
+are gaugeWeights capped at 1e18 ?
+
+
+[12/18/2023 11:50] eswak
+gauge weights are a number of tokens, could be from 1 wei to the max guild supply (1e27)
+
+{Reactions}
+👍 
+
+[12/18/2023 11:54] proxy1967
+so `gaugeProfitIndex` is the amount of `CREDIT` a gauge has as profit ?
+
+
+[12/18/2023 11:55] eswak
+this would be and index of number of CREDIT rewards per weight allocated to the gauge
+
+{Reactions}
+👍 
+
+[12/18/2023 12:52] slavcheww
+@Eswak Do you have any users actions for rebase with numbers like this one
+
+
+[12/18/2023 12:53] slavcheww
+Or if you can create one, that would be super helpful
+
+
+[12/18/2023 12:58] eswak
+I don't have, but what kind of "user actions" would you like to see ?
+
+
+[12/18/2023 13:03] slavcheww
+how \__rebasingSharePrice,\__unmintedRebaseRewards, totalRebasingShares, eth, change after `enterRebase()` and `distribute()`. I tried to calculate them for 2 borrowers with rebase and one distribute call, but they are quite confusing
+
+
+[12/18/2023 23:23] audinarey
+@Eswak kindly explain the terms `gaugeProfitIndex` and `userGaugeProfitIndex`  in clear terms as used in the `ProfitManager` contract
+
+
+[12/19/2023 00:47] onetruekirk
+These are accumulators used to track:
+1. How much interest has been earned by all stakers on a given gauge collectively
+2. How much of their share a given user has claimed
+
+If userGaugeProfitIndex is lower than gaugeProfitIndex, it means that user has unclaimed rewards
+
+{Reactions}
+✅ (2) 👍 
+
+[12/19/2023 03:17] guy_in0xnito
+Can anyone tell me why issuance is initialised in a particular loan borrow in Lendingterm::borrow ?
+
+
+[12/19/2023 03:17] guy_in0xnito
+As ik 
+Issuance is total no of credittokens that has been issued for all the loans in a term
+
+
+[12/19/2023 03:18] guy_in0xnito
+So why initiate it in a particular borrow ?
+
+
+[12/19/2023 03:18] guy_in0xnito
+Can anyone tell me the logic ?
+
+
+[12/19/2023 03:42] anmol.eth
+There will be a initial supply of 1 billion guild token when deployed. After that surplusGuildMinter can still mints the guild. Soo how the supply is fixed at 1 billion?
+
+
+[12/19/2023 04:07] onetruekirk
+Can you let me know which lines you’re referring to? Issuance is checked in each borrow to make sure the hard cap and debt ceiling are not exceeded after the new borrow, and is updated to account for the new borrow
+
+
+[12/19/2023 04:10] onetruekirk
+Bumping this for @Eswak
+
+
+[12/19/2023 05:33] guy_in0xnito
+Lending term::borrow
+~Line379
+
+
+[12/19/2023 05:35] 0x3b
+One gauge type is one market, while every term is a different gauge right? 
+Answered myself --> Yes
+
+{Reactions}
+💯 (5) 
+
+[12/19/2023 06:54] eswak
+the buffer cap of the minter is 1e27 and the replenish speed is 0 so the buffer never refills, meaning the max ever mintable is the bufferCap
+
+
+[12/19/2023 09:42] d_auditor
+What is the relevance of GaugeWeightTolerance?
+
+
+[12/19/2023 10:13] audinarey
+@OneTrueKirk  I sent you a DM
+
+
+[12/19/2023 13:58] anmol.eth
+How the slashing work can anyone explain me simply?
+
+
+[12/19/2023 14:00] 0x3b
+why does the credit token also has `ERC20MultiVotes`, don't we vote only with the guild one?
+
+
+[12/19/2023 14:04] nmirchev8
+CREDIT holders also vote! See here 😉 😄
+https://twitter.com/nmirchev8/status/1736401229377319055
+
+{Reactions}
+❤️ (2) 
+
+[12/19/2023 14:17] guy_in0xnito
+So borrowers who borrow gUSDC  also recieve GUILD tokens?
+
+
+[12/19/2023 14:38] pavankv
+No, users who  stakes gUSDC will get GUILD governance token.
+
+
+[12/19/2023 14:51] guy_in0xnito
+Then why in lendingterm:: borrow it is fetching the Guild token ?
+
+
+[12/19/2023 14:51] guy_in0xnito
+In the debt ceiling variable?
+
+
+[12/19/2023 15:11] 0xsl1
+the debt ceiling is dependant on the weight of gauge, which is determined in GuildToken
+
+
+[12/19/2023 15:39] d_auditor
+what is the gauge weight tolerance???
+
+
+[12/19/2023 15:40] 14si2o_flint
+A multiplier that increases the debtceiling, which is based on voting weight, in order to stimulate borrowing.
+
+{Reactions}
+👍 (2) 
+
+[12/19/2023 15:41] d_auditor
+hmm 🤔  thanks @14si2o_Flint
+
+{Reactions}
+👍 (2) 
+
+[12/19/2023 17:04] theschnilch
+But as a reward for staking, the user receives GUILD tokens
+
+{Reactions}
+✅ 
+
+[12/19/2023 17:07] yashar0x
+Indeed, I thought he meant that the moment the user stakes his credits, they will get GUILD
+
+
+[12/19/2023 21:04] tamayonft
+The action house support differents terms/gauge right ?
+
+
+[12/19/2023 21:47] onetruekirk
+Correct
+
+{Reactions}
+✅ 
+
+[12/20/2023 07:46] d_auditor
+is it correct to say that liquidations on loans taken only happens when a gauge is deprecated or the user failed to meet up with partial payments?
+
+{Reactions}
+💯 (7) 
+
+[12/20/2023 07:51] audinarey
+kI send you a DM @OneTrueKirk
+
+
+[12/20/2023 08:10] d_auditor
+Quick question @Eswak how is the collateral to credit value determined? The docs explains that once the midpoint of the auction is crossed, the collateral is worth less than the credit asked. if there is no pricing system other than the credit multiplier, how is this determined?
+
+
+[12/20/2023 09:56] guy_in0xnito
+What is the surplus buffer split.
+& othersplit 
+In profit manager ; profitsharing struct?
+
+
+[12/20/2023 10:04] eswak
+if the value offered is greater than the value asked, someone will take the opportunity, and that is how we know that we have not reached the true market value yet (until a bid happens)
+
+{Reactions}
+👍 (2) 
+
+[12/20/2023 10:05] eswak
+when borrowers pay interest, it is to determine where this interest goes (who earns it)
+
+
+[12/20/2023 10:05] d_auditor
+Relying on the liquidators I see
+
+{Reactions}
+👍 
+
+[12/20/2023 10:17] guy_in0xnito
+Surplus buffer --- firstlosscapital
+Guildsplit--- governance
+Othersplit & recipient are those protocol limited ?
+
+
+[12/20/2023 10:31] eswak
+otherSplit is for instance if we'd like a share of the earnings to go to a DAO treasury or something like that
+
+
+[12/20/2023 10:31] eswak
+it's set to 0 because I don't think there is a need for it now, but it's possible to direct earnings to another address in the future if needed (profitManager cannot be updated after deploy)
+
+
+[12/20/2023 14:33] d_auditor
+is there a reason why hardCap is set to zero when a loan is forgiven by the GOVERNOR in lendingTerm.sol?
+
+
+[12/20/2023 15:05] eswak
+to prevent new borrows until further notice (a governance action would be required to call setHardCap before new borrows happen, regardless of gauge weights)
+
+
+[12/20/2023 15:10] d_auditor
+Noted. Thanks @Eswak
+
+
+[12/20/2023 20:02] gladita
+I'm wading into the rebasing stuff now... it seems more like a vault (with shares) than a rebase (where supply increases and decreases to keep the value of an asset the same price). And the rebasing contract seems to just distribute tokens and the supply doesn't contract or expand to hold a peg... am I missing something?
+
+
+[12/20/2023 21:15] onetruekirk
+Seems like you have an accurate understanding. The credit tokens (gUSDC, gETH, etc depending on denomination) are like vault shares, and the interest is distributed by rebase. The shares have a fixed value to make it easy to reason about interest rates and collateral factors when setting up lending terms, and to make it easy to perform bad debt accounting
+
+
+[12/20/2023 21:16] onetruekirk
+The rebasing as you noted only goes up, since it represents interest being distributed, it is not a peg stability mechanism
+
+
+[12/20/2023 21:30] evmboi32
+Why would a borrower want to borrow from a position that is over collateralized?
+
+
+[12/20/2023 21:34] evmboi32
+And what happens if the value of collateral falls by a lot before the loan can be called? Is it a loss for the system?
+
+
+[12/21/2023 00:00] 0xstalin
+that's how most of the defi protocols work, by offering overcollateralized loans. As to why, the reason is users can deposit a collateral they are holding, like example btc, they don't need to sell their spot positions to borrow another asset, like example usdc, so, if their collateral (btc) appreciates in value, when they close their loan, they will get back their collateral, in this case they gain the appreciation of their btc position 🙂
+
+
+[12/21/2023 01:18] smartcontractprogrammer
+Can you give an example of how to use this protocol to deposit ETH collateral and borrow USDC?
+
+
+[12/21/2023 01:26] 0xstalin
+By using a term where the collateral is ETH, you can borrow gUSDC, and then redeem the borrowed gUSDC (CreditToken) in the PSM module for USDC
+
+
+[12/21/2023 01:32] 0xstalin
+Wait, actually, I think there is no support for the native token, it should be used WETH instead of ETH, right @Eswak  ?
+
+{Reactions}
+👍 ✅ 
+
+[12/21/2023 01:34] smartcontractprogrammer
+Thanks, I meant WETH
+I was thinking the same thing regarding how to borrow USDC but got confused since there is no price oracle for the collateral
+So does this mean collateral can be auctioned off any time?
+
+
+[12/21/2023 02:05] 0xstalin
+ah, the collateral can be auctioned if the loan is called, the loan can be called if the term is offboarded or if the borrower missed a partial repayment (if enabled)
+
+
+[12/21/2023 02:07] 0xstalin
+as to how the collateral is valued, the collateral is auctioned following a dutch auction mechanism, starts offering 0 collateral for all the debt, slowly offers more collateral during phase 1, when phase 2 starts, all the collateral is offered and slowly is asked less debt to be repaid
+
+
+[12/21/2023 02:07] 0xstalin
+so, basically the bidders determine the market value of the collateral
+
+{Reactions}
+👍 ✅ 
+
+[12/21/2023 02:39] tamayonft
+The lendingTermOftboarding.sol was made it to support several off boarding procces at the same time?
+
+{Reactions}
+👍 
+
+[12/21/2023 04:32] anmol.eth
+Even if there is a minor loss in the term all the user's GUILD get slashed? for example if i vote for term1 using my 100 GUILD  and if the term1 incurs bad debt. How much of my GUILD will get slashed?
+
+
+[12/21/2023 05:21] johnnytime
+Any idea why the Solidity Compiler don't let me use @audit tags? 
+What is the best way to solve it (without removing the @audit comments of course 😉 )
+
+
+[12/21/2023 05:21] johnnytime
+
+
+{Attachments}
+Code4rena - ARCHIVE-Q4-2023 - ethcreditguild-dec11 [1178757898218774619].txt_Files/image-11494.png
+
+
+[12/21/2023 05:25] 0xstalin
+all of it
+
+{Reactions}
+✅ (2) 
+
+[12/21/2023 05:27] 0x3b
+because you use them in `/* */` `@audit` tags must be used only in `//@audit`
+I am not aware of the reason why, but moving them out of `/* */` and into  `//` will fix the issue
+
+{Reactions}
+👍🏻 🤔 
+
+[12/21/2023 05:29] 0x3b
+Just the tag, any other coments can stay
+```jsx
+//@audit
+/*
+Steal funds or smt xD
+*/
+```
+
+
+[12/21/2023 05:29] 0xstalin
+that's the incentive for active lenders (gUSDC stakers) to monitor the terms where they put their tokens, so they are actively looking for loans that missed repayments (if it was enabled), or if loans are about to go underwater, the term can be offboarded and the loan can be called to initiate an auction for the collateral and try to prevent the market from accruing bad debt
+
+
+[12/21/2023 05:32] anmol.eth
+So if i have put 1 million GUILD for a gauge weight and gauge incur the loss of let's say 1 wei, does that mean my 1 million GUILD is lost and i can never get it back?
+
+
+[12/21/2023 05:37] anmol.eth
+Also when the user GUILD is slashed what is the impact of it in the weight of a lending term, does the debt ceiling remains same ? For example before loss if could borrow 500k credits with the GUILD weight of 1 million, after a loss does it change or  gauge still have same 1 million weight and user can still borrow 500k ?
+
+
+[12/21/2023 05:41] blutorque
+yeah, this is current behaviour. I'd the similar doubt, they said partial slashing will implement in future version, right now this is what it is.
+
+
+[12/21/2023 05:43] anmol.eth
+Where they have mentioned that?
+
+
+[12/21/2023 05:45] blutorque
+
+
+{Attachments}
+Code4rena - ARCHIVE-Q4-2023 - ethcreditguild-dec11 [1178757898218774619].txt_Files/ecg_contest_info-DF1E1.png
+
+{Reactions}
+👌 (3) 
+
+[12/21/2023 05:45] 0xstalin
+debtCeiling is updated when the loss is applied
+
+
+[12/21/2023 05:47] anmol.eth
+To apply the loss someone had to call `GuildToken:applyGaugeLoss(gauge,userWhoWasVotingWithGuild)`?
+
+
+[12/21/2023 05:48] 0xstalin
+that is correct, and this function will burn the user's guild tokens that used to vote for that gauge, and will reduce the user's weight from the gauge's weight
+
+
+[12/21/2023 05:50] anmol.eth
+untill someone call this function the debtCeiling remain same?
+
+
+[12/21/2023 05:52] 0xstalin
+yes and not, the debtCeiling can be any of different variables, check the debtCeiling() and you'll see what do i mean
+
+{Reactions}
+🫡 
+
+[12/21/2023 08:00] saksham0290
+https://twitter.com/SakshamGuruji/status/1737733359567356401  hope this helps! too much info in the channel😄
+
+{Reactions}
+🔥 (7) 
+
+[12/21/2023 08:25] 14si2o_flint
+Awesome Info! I would suggest grouping it one tweet though 😉
+
+
+[12/21/2023 08:27] saksham0290
+yeah the tweet turned out to be a little big😅  made a gist too to have everything at one place https://gist.github.com/SakshamGuruji3/71e2df2add95437f19b0b30652b07937
+
+{Embed}
+https://gist.github.com/SakshamGuruji3/71e2df2add95437f19b0b30652b07937
+GuilfNotes.md
+GitHub Gist: instantly share code, notes, and snippets.
+Code4rena - ARCHIVE-Q4-2023 - ethcreditguild-dec11 [1178757898218774619].txt_Files/gist-og-image-54fd7dc0713e-FFBCC.png
+
+{Reactions}
+👍 (6) 🔥 (2) 
+
+[12/21/2023 09:03] eswak
+yes
+
+
+[12/21/2023 09:06] eswak
+if you're a GUILD whale and trust a term enough to stake this much GUILD on it, you might want to bid on the auction at a slight loss to prevent slashing
+
+
+[12/21/2023 09:07] 14si2o_flint
+So upon launch, a number of GUILD tokens will be distributed to a group actors if I read the documentation correctly. 
+
+But is it described anywhere in **exact terms** how much GUILD will be distributed upon launch and to whom precisely?
+
+
+[12/21/2023 09:08] eswak
+no, this isn't described anywhere
+
+
+[12/21/2023 09:09] eswak
+but I think investors will have their GUILD available for vote, team members that have vesting, former users of Volt Protocol will get an airdrop, etc
+
+
+[12/21/2023 09:12] 14si2o_flint
+So for the scope of the audit, we should assume that these are all "trusted actors"? Since, depending on their GUILD amount, they could influence governance actions without having any assets at risk.
+
+
+[12/21/2023 09:17] eswak
+their GUILD is at risk if they participate in the gauge system
+
+
+[12/21/2023 09:17] 14si2o_flint
+But not if they abuse their GUILD for malicious veto'ing, unless I'm mistaken?
+
+
+[12/21/2023 09:19] anmol.eth
+I feel this is always the problem with vetoing. if you hold the min quorem then you have a power to do anything.
+
+
+[12/21/2023 09:20] 14si2o_flint
+The power to block anything, to be precise yes
+
+
+[12/21/2023 09:20] anmol.eth
+https://discord.com/channels/810916927919620096/1178757898218774619/1186205070329643109
+
+
+[12/21/2023 09:21] 14si2o_flint
+Accepted risk then I guess?
+
+{Reactions}
+✅ 🥺 
+
+[12/21/2023 10:12] 14si2o_flint
+Minor remark, in the tests I can see that GuildVetoGoverner is deployed for both the Guild and Credit tokens (onboardVetoCredit & onboardVetoGuild). 
+
+So it would be more correct if the contract would be named "VetoGoverner" since it is not exclusively used for GUILD. Is this correct?
+
+
+[12/21/2023 10:20] infectedfuture
+yes its also in the known issues of the repo :
+>  quorum of GUILD or gUSDC can block all governance actions except lending term offboarding. This is expected and the protocol would rather bias towards immutability and the ability to safely wind down than require large governance votes for everything. Forks are expected in case of strong cohort disagreements.
+
+{Reactions}
+👍 
+
+[12/21/2023 10:53] eswak
+correct I guess ^^
+
+
+[12/21/2023 11:01] 14si2o_flint
+We're professional nitpickers for a reason 😁
+
+{Reactions}
+🫂 
+
+[12/21/2023 11:04] ellipticpoint
+`/** */` and `///` is for Natspec. It's where things like `@notice` or `@dev` tags go. They're part of Solidity.
+`@audit` is part of the Inline Bookmarks VSCode extension. If you want to use them in multi-line comments, use `/* */` instead of `/** */`.
+
+{Reactions}
+🙏 (2) 
+
+[12/21/2023 11:07] eswak
+TIL
+
+
+[12/21/2023 14:46] theschnilch
+In the event of a loss, every user who setted weight on the gauge will be slashed. Would that also mean that the debt ceiling would then be back to 0 since this gauge then no longer has any weight?
+
+
+[12/21/2023 14:50] anmol.eth
+`profitManager:totalBorrowedCredit()` is supposed to include distributed rebased amount. if initial `totalBorrowedCredit`is 100, user earn some rebasing rewards of 10 , now the `totalBorrowedCredit` is supposed to be 100 or 110 ?
+
+
+[12/21/2023 15:21] anmol.eth
+So `creditMultiplier` never goes up once it is decreased,  initially the PSM will maintain 1:1 peg and once the bad debt happen the peg is broken and never went back to normal?
+
+{Reactions}
+✅ 
+
+[12/21/2023 16:18] eswak
+maybe the name is badly chosen but it's supposed to represent all the credit tokens that are circulating minus what's in the PSM
+
+
+[12/21/2023 16:18] eswak
+(including rebase rewards)
+
+
+[12/21/2023 17:28] viraz4331
+hi,
+currently guild token can be earned in 2 ways right 
+1. through minting 
+2 by staking gusdc 
+@Eswak can you confirm
+
+
+[12/21/2023 17:32] eswak
+correct
+
+
+[12/21/2023 18:41] theschnilch
+Can I write you a DM?
+
+
+[12/21/2023 18:42] 0xsl1
+of course, tho i am probably will only respond tomorrow, as it is 21:42 in my timezone already
+
+{Reactions}
+👍 
+
+[12/21/2023 19:39] tamayonft
+the lending term is made to support erc777 collaterals?
+
+
+[12/21/2023 20:01] tamayonft
+the termsurplusBuffer doesnt prevent that staker get slashed rigth?
+
+
+[12/21/2023 20:03] onetruekirk
+Non standard tokens (rebasing, fee on transfer, etc) are expected to require a wrapper
+
+
+[12/21/2023 20:04] onetruekirk
+Correct - staker gets slashed if there is any loss
+
+Partial slashing may be implemented in a future version, for now full slashing on loss is the intended behavior
+
+
+[12/21/2023 20:16] theschnilch
+If a loss occurs, every user who has weight on the gauge should be slashed so that the weight becomes 0 and therefore no one can borrow anymore because debt ceiling would then also be 0, right?
+
+
+[12/22/2023 00:35] onetruekirk
+Correct, usually a loss is only reported after a term is already off boarded (meaning you already can’t borrow against it before the slashing), but it can also occur if a partial repayment is missed (for loans of the type requiring partial repayment) and a loan goes to auction resulting in bad debt
+
+
+[12/22/2023 04:37] 0xfave
+@OneTrueKirk when the profitmanager distributes rewards is it based on only the gaugeweight?
+
+
+[12/22/2023 09:50] sweetcat0118
+@Eswak which collateral token can be used?
+Any token?
+
+
+[12/22/2023 09:52] blckhv
+https://github.com/code-423n4/2023-12-ethereumcreditguild/tree/main?tab=readme-ov-file#additional-context
+
+{Embed}
+https://github.com/code-423n4/2023-12-ethereumcreditguild/tree/main?tab=readme-ov-file
+GitHub - code-423n4/2023-12-ethereumcreditguild
+Contribute to code-423n4/2023-12-ethereumcreditguild development by creating an account on GitHub.
+Code4rena - ARCHIVE-Q4-2023 - ethcreditguild-dec11 [1178757898218774619].txt_Files/f0a4d12c-7ddc-4dad-9792-2d44e0f688c4-00CC0
+
+
+[12/22/2023 12:50] anmol.eth
+When notifyPnl is called with loss it should not allow term to lend ?
+
+
+[12/22/2023 13:12] 0x3b
+No it just slashes the term
+
+
+[12/22/2023 15:46] onetruekirk
+That and the split within the profit manager between the guild stakers, lenders, surplus buffer, and optional fourth recipient
+
+
+[12/22/2023 15:55] onetruekirk
+If a term is unsound, it should have already been offboarded before the loan is closed and notifyPNL is called. The term may be re onboarded later
+
+
+[12/23/2023 07:37] aerialraider
+check that out... Chat GTP 4-
+
+{Attachments}
+Code4rena - ARCHIVE-Q4-2023 - ethcreditguild-dec11 [1178757898218774619].txt_Files/a98d550b-5e19-47aa-8ced-542a4b4e449e-0A17E.webp
+
+{Reactions}
+🔥 (3) 😂 (11) 4739_Skeletor (2) 
+
+[12/23/2023 10:22] 14si2o_flint
+Is that cyrillic? or greek? can't read the small text for the life of me
+
+{Reactions}
+👍 
+
+[12/23/2023 14:55] gladita
+you guys are planning to make calls to getRewards one user at a time?
+
+
+[12/23/2023 15:01] takarez
+yeah, as the function  says.
+
+
+[12/23/2023 17:58] tamayonft
+the contract is expected to be deploy just in  etherium?
+
+
+[12/23/2023 18:07] yashar0x
+And L2s like Arbitrum
+
+
+[12/23/2023 18:07] oxwhite
+hi guys! auction system doesn't make sense to me. So ı wanted to share my thoughts and get hopefully some correction from you. In the first phase of an auction, 100% credit is asked and the amount of collateral is raised gradually until midpoint at which 100% collateral is offered for 100% credit(debt) token, ıf there is no any bid ,then in the second phase the  amount of debt is decreased gradually in exchange for 100% collateral. If this is the case, why someone should bid before the last minutes ? and in docs expressed if no one bids,  100% percent loss is accepted, how that is the case when the platform still holds the collateral amount(unless the amount's value is not close 0 by time)
+
+
+[12/23/2023 18:18] yashar0x
+As I understand it, 100% debt for 100% collateral (midpoint) provides the borrower with an opportunity to repay the loan and retrieve their collateral. Beyond the midpoint, there is no guarantee that the borrower can successfully bid in an auction. This is because, at that point, liquidator bots may bid before the borrower, potentially even front-running their transaction if there is a profit in the auction
+
+
+[12/23/2023 18:32] oxwhite
+If there is an auction, then there is bad debt case as ı understand. In the first phase basically , valueof(collateral)<valueof(credittoken). if the borrower wants to repay the loan at midpoint, then can we say collateral=debt in value?(ı guess may be or may not be).  at some point the amount of collateral and debt will be equal. around that point ıt will make sense if the borrower wants to repay .otherwise the borrower would lose money. because the amount of collateral would be more than the amount of credit token in value, right?
+
+
+[12/23/2023 18:39] yashar0x
+Creating an auction itself doesn't imply bad debt, but it signals a potential risk. At the midpoint, where the value of collateral equals the value of debt, there is no bad debt occurrence if the borrower bids. In this scenario, it's akin to the borrower repaying their loan, and no bad debt occurs. However, if the borrower bids after the midpoint, they will make a profit, but the protocol will incur bad debt. In this case, the borrower will receive their full collateral while paying less in credits, resulting in a situation where the borrower doesn't incur losses.
+
+{Reactions}
+👍 
+
+[12/23/2023 20:10] 14si2o_flint
+Understand that all loans are overcollateralised to some degree. If you want to borrow 1$ in USDC, you must deposit 1.5$ in DAI for example. 
+
+If then the loan is called, you can get 1.5$ in DAI for 1$ USDC. A nice profit. 
+
+Naturally auctions will happens when the loan falls below the required collateralisation % (150 in the example above), but it is very possible and common for buyers to make profit the second the auction opens. 
+
+Then the debt required drops slowly to incentiveze buyers. Only in the second part of the auction can there be creation of bad debt.
+
+To note @yashar, his example is correct, but since the liquidation will only happen when the value of the collateral drops, he will not make a profit.
+
+{Reactions}
+👍 
+
+[12/23/2023 20:11] yashar0x
+Thanks for correcting me sir 🫡
+
+{Reactions}
+👍 
+
+[12/24/2023 03:26] babs2833
+offboarding a lending term seems to be a preventative measure before bad debt is actually exposed on the protocol? Meaning, zero bad debt has accrued, but people are currently just nervous that there may be bad debt coming soon in minutes/hours/days? Or they are just scared of this particular lending term? Or is there inevitable incoming bad debt and everyone knows it beforehand?
+
+And if for some reason (?) the guildies don't get their act together quick enough to propose an offboarding, then the functions like `forgive()` can be called by the governor, which actually calls `notifyPnL()`, and starts the process of imprinting the bad debt into the system?
+
+*And side note, it seems like the only one or two places where PnL passed into `notifyPnL()` can be negative, via the `forgive()` in case of absolute abandonment, and it seems like `onBid()` also has valid cases where the PnL can be negative?
+
+
+[12/24/2023 03:51] tamayonft
+why the redention is set to paused in the psm when there is an offboard procces?
+
+
+[12/24/2023 05:24] babs2833
+`LendingTerm::_call()` doesn't have to result in an auction where a negative PnL is resulted right? It can just be a normal auction where it ends within the first half and that shouldn't result in negative PnL?
+
+
+[12/24/2023 07:33] ev_om
+@alexbabits afaiu terms may be offboarded for multiple reasons: as a preventive measure against bad debt, as a reaction to bad debt or just as a strategic decision. Ideally a term is offboarded before any bad debt is accrued, but there is no guarantee that voters will succeed in doing so
+
+Note that the governor _is_ the timelock, so it would also have to be the guildies calling `forgive()`. But this is only necessary if for some reason collateral can't be transferred out of the system during the bidding process, otherwise in theory someone will always take the auction
+
+Re negative PnL, that is correct, have a look at the auction mechanism described in the docs
+
+`call()` ideally does not result in a loss for the system if it ends within the first half. And even if a loan is already underwater (market price is past the first half), stakers with weight in that term have an incentive to absorb the losses to prevent an even bigger loss if they are slashed
+
+{Reactions}
+👍 
+
+[12/24/2023 08:19] distbit
+Does offboarding impact existing loans made via the loan term, or just prevent the issuance of new loans? thx
+
+
+[12/24/2023 09:54] ev_om
+Offboarding makes all loans in that term callable
+
+
+[12/24/2023 10:33] distbit
+Aren't they always callable though? Sorry if I am making an obvious mistake and thx for your help
+
+
+[12/24/2023 10:34] 69_squirtles
+loans should be call-able when the term has been offboarded/if a loan has missed the partialRepayment period if there is one
+
+
+[12/24/2023 10:40] distbit
+Ah interesting thx yeah it seems you are right. I think my confusion was because I had previously read "Anyone can call a loan issued by the protocol by paying the call fee in credits. The call fee is deducted from the borrower's debt and burnt." from https://github.com/volt-protocol/ethereum-credit-guild/blob/c7dd289ef2448609a5eba3f933f5941fe2ca9347/credit.md#calling-and-liquidating-loans but this seems to be out of date
+
+
+[12/24/2023 10:43] distbit
+I think I can see why this change was made, as GUILD stakers are likely to either want to call all loans in a term (therefore offboard it) or none, and hence there is little benefit in allowing individual loans to be called modulo some extenuating circumstance (such as missed partial repayment).
+
+
+[12/24/2023 10:49] distbit
+It also seems that a callFee is no longer required to call a loan... at least it is not mentioned here: https://github.com/code-423n4/2023-12-ethereumcreditguild/blob/2376d9af792584e3d15ec9c32578daa33bb56b43/src/loan/LendingTerm.sol#L634C14-L634C19
+
+
+are call periods also now a thing of the past?
+
+
+[12/24/2023 10:50] distbit
+surely I am missing something..
+
+
+[12/24/2023 10:50] anmol.eth
+Yes there is no call period. Once the loan is called it immediately enter the auction
+
+
+[12/24/2023 10:50] distbit
+damn I see
+
+
+[12/24/2023 10:50] distbit
+I thought call periods were like an integral component of ecg up until today
+
+
+[12/24/2023 10:51] anmol.eth
+The post from substack is quite outdated
+
+
+[12/24/2023 10:51] distbit
+I would be very interested in understanding the rationale for deprecating call periods
+
+
+[12/24/2023 10:51] anmol.eth
+if you have recently joined the scroll through all the chats you will find most of your answers.
+
+
+[12/24/2023 10:51] distbit
+ok thx will do
+
+
+[12/24/2023 10:52] distbit
+My understanding of ecg primarily comes from reading OTK's substack and github md files from several months ago 😅
+
+
+[12/24/2023 10:53] anmol.eth
+https://twitter.com/SakshamGuruji/status/1737733359567356401
+maybe this can help
+
+{Reactions}
+✅ 
+
+[12/24/2023 10:54] distbit
+oooh great thx sm
+
+
+[12/24/2023 10:54] anmol.eth
+yeah i also read that and was wandering in dreams about where i have seen call fee and call period🤦
+
+
+[12/24/2023 10:56] distbit
+yeah I have like 20 of his articles lol
+
+so I guess now loans are still callable options, but with a call period of like 0 up to the discretion of governance/guild holders
+
+
+[12/24/2023 10:58] anmol.eth
+i think they have completely removed the call period thing. have a look into _call function inside lendingterm.sol
+
+
+[12/24/2023 10:58] distbit
+yeah I was just looking at it then
+
+
+[12/24/2023 10:58] distbit
+seems you are right about that
+
+
+[12/24/2023 12:27] eswak
+We completely removed the call fee & call period because it didn't make much sense and was griefable : if the caller paid 5% of the debt to call the loan, the borrower could just repay the remaining 95% debt and re-open the same loan once again. This was not an actual way to force the borrower out of their position. The only way to prevent the borrower from re-opening the same loan, was to make the term unavailable before calling the loan, hence what you see now in the codebase where the term has to be offboarded before loans are called.
+
+{Reactions}
+👍 (2) 
+
+[12/24/2023 12:30] eswak
+The call period also was removed from the codebase, but in a sense it still exists. Since there is no liquidation fee, during the start of the auction (before the collateral offered price reaches market price), the borrower can bid on their own collateral and repay their full debt while getting their whole collateral, which was exactly the call period mechanism. If the auction midpoint is 1h and the loan is 200% collateralized, the first 30 minutes of the auction is basically a call period because everyone else but the borrower would be bidding at a loss.
+
+{Reactions}
+👍 
+
+[12/24/2023 12:41] anmol.eth
+The docs state that there are specific types of  collateral tokens that the protocol supports, But isn't adding the new collateral tokens in the hand of governance, if the majority of token holders choose to add a fee on transfer tokens as collateral then how can the protocol decide to not support it?
+
+
+[12/24/2023 12:43] anmol.eth
+I think governance can easily onboard a term using any weird tokens as collateral... am i missing something?
+
+
+[12/24/2023 12:48] 0xsl1
+I think that proposal with a weird or FOT token belongs to a malicious kind, and veto is in place to prevent this. If there is a strong disagreement on whether to support weird tokens or not => forks are are not only expected but encouraged as stated in the readme of the contest
+
+
+[12/24/2023 12:53] anmol.eth
+maybe @Eswak or @OneTrueKirk can give some insights on this...
+
+
+[12/24/2023 12:54] anmol.eth
+Soo, it will probably be the protocol to veto in this.?
+
+
+[12/24/2023 12:54] 0xsl1
+large stakeholders
+
+
+[12/24/2023 12:56] 0xsl1
+you have to understand that large stakeholders with an ability to veto a proposal are exposed to the price of GUILD they are holding. there is no reason for them to allow a term with FOT token to be onboarded, which can possibly break accounting of the protocol and damage the system, becasuse they will be the ones taking a big loss if the price of their tokens tanks because of this
+
+{Reactions}
+✅ (2) 
+
+[12/24/2023 13:02] eswak
+I'll just be one of many token holders but I'll probably veto addition of lending terms that do not come with proper checks (open-source integration tests) that the protocol will work properly with the new collateral... Every protocols should do these checks before altering the configuration, this is not a game
+
+{Reactions}
+🔥 (4) 
+
+[12/24/2023 14:11] distbit
+is it possible to adjust the length of the first half of the auction independently of the length of the second half of the auction though? Seems that if not, the concepts of auction length is coupled to the concept of call period, which means modifying either perhaps has unintended side effects..
+
+
+[12/24/2023 14:11] distbit
+thx for your response above btw re: call period + fee. makes a lot of sense
+
+{Reactions}
+🫡 
+
+[12/24/2023 14:12] eswak
+yes the total auction duration is a parameter and the time of midpoint is a 2nd parameter
+
+
+[12/24/2023 14:13] distbit
+ah very nice I see. Sounds like you have put a lot of thought into this.
+
+
+[12/24/2023 14:16] distbit
+approx how long between the end of the submission period and when payments are made to accepted reports, out of curiosity?
+
+
+[12/24/2023 14:20] 0xsl1
+depends on the amount of submissions, to get a good understanding you can look in the archived channels of past contests to see when the contest ended and when the rewards were anounced
+
+{Reactions}
+👍 (2) 
+
+[12/24/2023 14:36] distbit
+hmm ok I had a look and it seems like it takes ~a couple of weeks
+
+
+[12/24/2023 16:08] oxwhite
+as ı understand, the new max Gauges can be set to lower than the old max by function " _setMaxGauges", in this case what happens to  the user(s)  whose numUserGauges=oldMaxGauges? in the comment section of the same function, it is expressed while setting the new value, numUserGauges should be checked by authority. is the authority gonna check all the users manually if anyone's numUserGauges is bigger than new MaxGauges? That doesn't make sense to me. how the platform handle this? couldn't see any code relating these.
+
+
+[12/24/2023 17:59] eswak
+the Authority mentioned in the comments might be because the original code used Solmate's Auth for access control but in our case it's protected with the `onlyCoreRole` modifier. When the number of gauges is set to a lower number, users should not be able to increment weight of new gauges until their number of gauges is lower than the new number. I'd have to check the exact implementation but I think they can still change the weight of the gauges they currently have. Same for ERC20MultiVotes & max delegations.
+
+
+[12/24/2023 17:59] gladita
+There's a function balanceOf in ERC20RebaseDistributor which overrides the balanceOf function in ERC20 but then it calls ERC20.balanceOf in that function (basically calling itself). Can you even do that? Wouldn't it lead to an endless loop
+
+
+[12/24/2023 18:00] eswak
+no it just calls the parent's implementation if the user is not rebasing
+
+
+[12/24/2023 18:01] gladita
+so ERC20.balanceOf(account) = the amount of CREDIT held by the account
+
+
+[12/24/2023 18:07] eswak
+ERC20.balanceOf is the amount of tokens that is stored in state but in case the user is rebasing the nShares * sharePrice formula should be used to return the balanceOf
+
+
+[12/24/2023 18:34] tamayonft
+why the redention is set to paused in the psm when there is an offboard procces?
+
+
+[12/24/2023 19:04] gladita
+nvm sorry i see the mistake i made
+
+
+[12/25/2023 03:17] onetruekirk
+A couple further notes to expand on Erwan’s answer:
+
+1. The griefing vector here has an interesting similarity to the one encountered by Ajna, I encourage anyone interested to take a look at what happened in their system.
+
+2. A lending term could still be given a grace period to repay after offboarding and before auction starts, giving a borrower time to repay. This isn’t the basic implementation being audited now, but I suspect we will add this feature for the next audit round, which will also include some other custom lending terms
+
+{Reactions}
+👍 
+
+[12/25/2023 07:18] 0xauditism
+why do we need to `SurplusGuildMinter::updateMintRatio()` function ?
+
+
+[12/25/2023 10:49] 14si2o_flint
+Was this question answered? I'm looking through the code and the only possible answer I find is the bufferCap in ratelimited?
+
+
+[12/25/2023 10:54] 0xsl1
+you are correct
+
+{Reactions}
+👍 (2) ✅ 
+
+[12/26/2023 00:54] evmboi32
+Guild tokens can become transferrable if the governance approves right?
+
+
+[12/26/2023 01:31] distbit
+Yes 👍
+
+https://github.com/code-423n4/2023-12-ethereumcreditguild/blob/2376d9af792584e3d15ec9c32578daa33bb56b43/src/tokens/GuildToken.sol#L175
+
+{Embed}
+https://github.com/code-423n4/2023-12-ethereumcreditguild/blob/2376d9af792584e3d15ec9c32578daa33bb56b43/src/tokens/GuildToken.sol
+2023-12-ethereumcreditguild/src/tokens/GuildToken.sol at 2376d9af79...
+Contribute to code-423n4/2023-12-ethereumcreditguild development by creating an account on GitHub.
+Code4rena - ARCHIVE-Q4-2023 - ethcreditguild-dec11 [1178757898218774619].txt_Files/f0a4d12c-7ddc-4dad-9792-2d44e0f688c4-00CC0
+
+{Reactions}
+👍 
+
+[12/26/2023 01:32] distbit
+What does "with borrowers compensated for the inconvenience" refer to in "Its failure mode is to safely end lending operations (with borrowers compensated for the inconvenience)" from https://code4rena.com/audits/2023-12-ethereum-credit-guild
+
+? Many thx
+
+{Embed}
+https://code4rena.com/audits/2023-12-ethereum-credit-guild
+Ethereum Credit Guild | Code4rena
+$90,500 in USDC
+11 December 8:00 PM—28 December 8:00 PM
+Code4rena - ARCHIVE-Q4-2023 - ethcreditguild-dec11 [1178757898218774619].txt_Files/c4-og-banner-4C81A.png
+
+
+[12/26/2023 02:40] onetruekirk
+That is an outdated comment, in a previous iteration of the system borrowers received a “call fee” if loans were called, however this was revealed as a griefing vector in pre-c4 audit
+
+{Reactions}
+👍 ✅ 
+
+[12/26/2023 02:41] onetruekirk
+GUILD voters decide how much external first loss capital they want in the system by adjusting its voting power. A higher mint ratio is effectively higher leverage for external stakers
+
+{Reactions}
+thankyou 
+
+[12/26/2023 08:57] sweetcat0118
+@Eswak did you saw message in Thread?
+
+
+[12/26/2023 10:50] 0xarshia
+hey @Eswak  just DM'ed you.
+
+
+[12/26/2023 11:46] evmboi32
+when a loan is forgiven should the hardcap be set to 0?
+
+
+[12/26/2023 11:47] d_auditor
+You should see this @evmboi32
+
+{Reactions}
+🙏 
+
+[12/26/2023 11:48] evmboi32
+Thank you
+
+
+[12/26/2023 19:23] 0xpessimist
+Hey @Eswak , DM'ed you a question about LendingTerm. Can you accept friend req?
+
+{Reactions}
+✅ 
+
+[12/27/2023 00:08] xors33r
+I'm sharing this diagram here in case it can help other wardens. This was my understanding of the protocol. In hindsight, I probably spent too much time trying to understand it instead of working on significant findings 😅
+https://twitter.com/xors33r/status/1739799388531085358?s=61&t=3XIVwHaIbaudaSzRq22eww
+
+
+[12/27/2023 00:56] 0xtendency
+Sometimes you earn, sometimes you learn.
+You will find it easier next time 💯
+
+{Reactions}
+🙏 (6) 
+
+[12/27/2023 03:01] tamayonft
+the protocol is expected to work with erc777?
+
+
+[12/27/2023 07:41] glorys3c
+Is there are list of contract or addresses that will have governor role? @Eswak
+
+
+[12/27/2023 07:58] eswak
+no I think these would need wrapping because of the callback, they could revert on transfer maliciously
+
+
+[12/27/2023 07:59] eswak
+yes, here : https://github.com/code-423n4/2023-12-ethereumcreditguild/blob/main/protocol-configuration/roles.json#L2
+you can also have a look at the deployment script
+
+{Embed}
+https://github.com/code-423n4/2023-12-ethereumcreditguild/blob/main/protocol-configuration/roles.json
+2023-12-ethereumcreditguild/protocol-configuration/roles.json at ma...
+Contribute to code-423n4/2023-12-ethereumcreditguild development by creating an account on GitHub.
+Code4rena - ARCHIVE-Q4-2023 - ethcreditguild-dec11 [1178757898218774619].txt_Files/f0a4d12c-7ddc-4dad-9792-2d44e0f688c4-00CC0
+
+
+[12/27/2023 17:51] mike_bello90
+guys, if a gauge has 0 weigth  it means nobody can borrow from that gauge??
+
+{Reactions}
+👍🏼 (8) 
+
+[12/27/2023 23:30] mike_bello90
+peg token is the usdc or gUSDC?
+
+
+[12/28/2023 00:10] slavcheww
+usdc
+
+{Reactions}
+hi5 
+
+[12/28/2023 00:10] slavcheww
+gUSDC is the credit token
+
+
+[12/28/2023 01:36] distbit
+Just noticed the existence of the minimum loan size. Very nice. Withdrew one finding as a result 😅
+
+Afaict this blocks what would otherwise be a high sev vuln.
+
+
+[12/28/2023 01:44] tamayonft
+There is one psm for several terms?
+
+
+[12/28/2023 01:45] tamayonft
+As long that it have the same credit token?
+
+
+[12/28/2023 04:37] slavcheww
+Yes
+
+
+[12/28/2023 09:59] aslanbekaibimov
+@Eswak sent you a message in a private thread about 14 hours ago. Please check it out when you can 🙂
+
+{Reactions}
+✅ (2) 
+
+[12/28/2023 20:02] C4
+**🚨 AUDIT ALERT**
+
+@🐺wardens  The **Ethereum Credit Guild** audit is now closed! Huge thanks to everyone who participated 🔍, whether you submitted a finding or not.
+
+What's next: The sponsor team and judge will review the findings over the next couple of weeks. Keep an eye on #📢announcements for regular updates on how the audit is progressing through awarding 🤑🏆, judging 🧑‍⚖️ and reporting 📜. Feel free to ping a Contest-Admin if you have questions along the way!
+
+{Reactions}
+C4Keycap (10) 🎉 (7) 
+
+[12/28/2023 20:14] takarez
+congratulations @Eswak  `&` @OneTrueKirk  for the completion , the code seems well structured and easy to read but difficult to wrapped head around haha, learn a lot from the codebase. web3 should be safe, it will be safe, web3 must be safe.
+
+
+[12/28/2023 20:15] 0xsl1
+It was an interesting one. Thank you @Eswak & @OneTrueKirk  for answering all of our questions. Good luck to wardens and happy holidays to everyone! :hi5:
+
+
+[12/28/2023 20:15] eswak
+I would like to thank everyone for your time & interest in the code and the project. It has been an exhausting but very interesting last 2 weeks 😁 I also learned a lot, thank you.
+
+
+[12/28/2023 20:16] eswak
+(can't wait to see the consolidated findings)
+
+{Reactions}
+hi5 (23) ❤️ (15) 
+
+[12/28/2023 20:18] blckhv
+Best sponsors out there ✌🏻
+
+
+[12/28/2023 20:18] irving6969
+Thank you @Eswak & @OneTrueKirk for patiently answering my dumb questions . I learned a lot from this project .
+
+
+[12/28/2023 20:26] hisoul22
+Thank you @Eswak
+
+
+[12/28/2023 20:34] onetruekirk
+I really appreciate everyone’s hard work. I will be able to sleep soundly post deployment thanks to you all 🙏
+
+{Reactions}
+💜 (9) 
+
+[12/28/2023 20:36] yashar0x
+Indeeeeeeeeeeed 👍🤘
+
+
+[12/28/2023 20:49] lsaudit
+how many findings were reported?
+
+
+[12/28/2023 20:57] 0xstalin
+1.2k
+
+{Reactions}
+😐 (10) ☠️ (14) thisisfine (2) thankyou (3) 
+
+[12/28/2023 22:21] eswak
+What have I done 🤣
+
+{Reactions}
+🤣 (27) 
+
+[12/29/2023 03:02] tamayonft
+Xd
+
+
+[12/29/2023 05:56] 0xsaviour_
+Thank you @Eswak @OneTrueKirk for being a great help throughout.
+
+
+[12/29/2023 09:18] distbit
+are guild tokens able to be minted by non-eoa addresses?
+
+{Reactions}
+🤔 (2) ✅ (2) 
+
+[12/29/2023 12:16] distbit
+Hmm got it thx
+
+
+[12/30/2023 10:24] ev_om
+Is it possible to get access to the findings repo without backstage?
+
+
+[12/30/2023 14:12] infectedfuture
+you can get access here: https://docs.code4rena.com/roles/certified-contributors/backstage-wardens
+
+{Embed}
+https://docs.code4rena.com/roles/certified-contributors/backstage-wardens
++Backstage wardens
+
+
+[12/30/2023 14:24] ev_om
+Started a thread.
+
+
+[01/11/2024 19:36] distbit
+wen 🥹
+
+
+[01/11/2024 20:55] 0xstalin
+I'd say 2-4 weeks more
+
+{Reactions}
+👍 
+
+[01/12/2024 01:54] tamayonft
+Wen post judging
+
+
+[01/15/2024 09:51] infectedfuture
+you'll get a notification here https://discord.com/channels/810916927919620096/1166686843421593631
+
+
+[01/15/2024 09:52] infectedfuture
+do not forget to correctly configure notifications for this channel (happend to me first time 🥲)
+
+
+[01/20/2024 17:25] chinmayf
+Does someone know of an update ?
+
+{Reactions}
+👀 (6) 
+
+[01/23/2024 18:34] natzuu33
+wen
+
+
+[01/24/2024 01:53] hisoul22
+should take another 2-3 weeks
+
+{Reactions}
+😐 (10) 🥲 (5) ohno (4) 
+
+[01/30/2024 15:48] 0xpessimist
+any updates?
+
+{Reactions}
+👀 (12) 
+
+[02/02/2024 21:59] onetruekirk
+Hey all, it was a lengthy review process both for us and the judges, I heard from the c4 team that their review of our feedback on the findings has been completed, so the full report should be available next week. Thank you again for all your hard work and your patience in this process
+
+{Reactions}
+🫡 (20) 💯 (12) 🤝 (4) hi5 (3) 10_10 (3) 🐺 (3) 
+
+[02/04/2024 09:35] chinmayf
+This one taught me patience on a whole another scale. When is it finally coming out ?
+
+{Reactions}
+😂 (5) 
+
+[02/04/2024 10:53] visualbits
+Still in judging phase and findings not labeled by staff for calculating awards yet.
+Probably the awards will be announced by the end of the week.
+
+{Reactions}
+👍🏽 (2) 
+
+[02/04/2024 11:37] hisoul22
+The Post-Judging QA is almost over
+
+{Reactions}
+👍🏽 (3) 👀 (2) 
+
+[02/08/2024 13:27] 0x_6a70
+😴
+
+{Reactions}
+👁️ (8) 👁‍🗨 (3) 
+
+[02/08/2024 19:54] 0xstalin
+most likely next week
+
+{Reactions}
+👀 (3) 🦾 (3) 🥲 (4) sadgeBusiness (2) 
+
+[02/08/2024 19:54] 0xstalin
+🫡
+
+
+[02/09/2024 12:34] yashar0x
+Hey guys
+According to C4 rules discussing about findings before the reports are public is prohibited
+But I saw a video on youtube which they were discussing about their findings in this contest publicly
+Is it prohibited to discuss the findings in this specific place or is it generally prohibited everywhere? 🤔
+
+
+[02/09/2024 12:43] 0xsl1
+this is contest guidelines from https://docs.code4rena.com/roles/wardens/submission-policy
+
+{Attachments}
+Code4rena - ARCHIVE-Q4-2023 - ethcreditguild-dec11 [1178757898218774619].txt_Files/IMG_8791-6CB0A.png
+
+{Embed}
+https://docs.code4rena.com/roles/wardens/submission-policy
+Submission policy
+
+
+[02/09/2024 12:46] yashar0x
+But they didn't wait 🙂
+
+
+[02/09/2024 12:46] 0xsl1
+you should probably flag this to @thebrittfactor | C4 or someone else from the team
+
+
+[02/09/2024 12:46] yashar0x
+Thanks
+
+
+[02/09/2024 14:37] thebrittfactor
+Thank y'all 🙂
+
+{Reactions}
+🫡 
+
+[02/09/2024 16:25] timenov
+Results are in profiles
+
+{Reactions}
+🤔 (8) 👀 (2) 
+
+[02/09/2024 17:10] shubh0412
+https://tenor.com/view/throwing-money-hoes-money-paying-my-hoes-boy-gif-12535074
+
+{Embed}
+https://tenor.com/view/throwing-money-hoes-money-paying-my-hoes-boy-gif-12535074
+Code4rena - ARCHIVE-Q4-2023 - ethcreditguild-dec11 [1178757898218774619].txt_Files/throwing-money-hoes-314EE.png
+
+
+[02/09/2024 17:40] blckhv
+Don't you think they deserve awards to be announced today 🥹
+
+{Reactions}
+😁 
+
+[02/09/2024 18:02] thebrittfactor
+Indeed! 😆
+Later today, hopefully!
+
+
+[02/09/2024 18:08] 0xstalin
+https://tenor.com/view/yes-yeah-nice-ok-thumbs-up-gif-8264000923577027053
+
+{Embed}
+https://tenor.com/view/yes-yeah-nice-ok-thumbs-up-gif-8264000923577027053
+Code4rena - ARCHIVE-Q4-2023 - ethcreditguild-dec11 [1178757898218774619].txt_Files/yes-yeah-67B66.png
+
+
+[02/09/2024 18:26] haxatron1
+Decent too? 🙏
+
+
+[02/09/2024 19:05] 0xstalin
+one at a time ser 🫡
+
+
+[02/09/2024 19:05] haxatron1
+¿Porque no los dos?
+
+
+[02/09/2024 19:06] 0xstalin
+mas placer de uno por uno
+
+
+[02/09/2024 19:06] 0xstalin
+:chefskiss:
+
+
+[02/09/2024 20:46] thebrittfactor
+🤑 🎉  Awards for **Ethereum Credit Guild**:
+
+$4,882.83 USDC » @critical-or-high 
+$4,768.39 USDC » @JCN 
+$4,673.11 USDC » @0xStalin 
+$4,635.69 USDC » @santipu_ 
+$4,366.37 USDC » @EV_om 
+$4,104.36 USDC » Byteblockers (@marchev, @0x3b)
+$3,196.99 USDC » @3DOC 
+$3,173.97 USDC » SBSecurity (@Blckhv, @Slavcheww)
+$3,092.06 USDC » @ether_sky 
+$2,298.27 USDC » @Kaden 
+$2,258.20 USDC » @0xpiken 
+$1,477.20 USDC » Ward (@0xpessimist, @Natzuu)
+$1,317.36 USDC » @Cosine 
+$1,272.66 USDC » @carrotsmuggler 
+$1,181.30 USDC » @Sathish9098 
+$1,107.90 USDC » @takarez 
+$892.68 USDC » @0xSmartContract 
+$860.47 USDC » @rvierdiiev 
+$711.22 USDC » HighDuty (@nmirchev8, @cholakov)
+$626.26 USDC » @Tendency 
+$625.14 USDC » @rbserver 
+$615.68 USDC » @Chinmay 
+$608.71 USDC » @Soul22 
+$577.54 USDC » c47ch3m4ll (@JohnnyTime, @t4sk)
+$559.98 USDC » @Silvermist 
+$529.69 USDC » SpicyMeatball 
+$529.18 USDC » @btk 
+$491.30 USDC » @niroh 
+$489.99 USDC » @0xadrii 
+$451.46 USDC » @evmboi32 
+$430.75 USDC » @ElCid 
+$430.75 USDC » @Topmark 
+$430.75 USDC » @aslanbek 
+$418.78 USDC » @serial-coder 
+$412.21 USDC » @grearlake 
+$371.99 USDC » @xeros 
+$368.24 USDC » @TheSchnilch 
+$364.64 USDC » @sl1 
+$364.10 USDC » @ICP 
+$336.04 USDC » @AlexCzm 
+$329.88 USDC » @EllipticPoint 
+$329.15 USDC » @beber89 
+$323.57 USDC » 0xAlix2 (@a_kalout, @ali_shehab)
+$299.13 USDC » @OMEN
+
+
+[02/09/2024 20:46] thebrittfactor
+$294.87 USDC » SECURITISE (@audinarey, @b0g0)
+$289.19 USDC » Inference 
+$273.50 USDC » @Jorgect 
+$260.28 USDC » @0xbepresent 
+$256.04 USDC » @CaeraDenoir 
+$253.47 USDC » @lsaudit 
+$252.27 USDC » Akali 
+$249.22 USDC » @0xPhantom 
+$249.22 USDC » @soltho 
+$249.22 USDC » @y0ng0p3 
+$247.49 USDC » @code-cipher 
+$240.77 USDC » @stackachu 
+$237.72 USDC » @KingNFT 
+$211.23 USDC » @EVDoc 
+$196.74 USDC » almurhasan 
+$196.26 USDC » @0xDemon 
+$196.26 USDC » @Beepidibop 
+$196.26 USDC » glorySec 
+$195.84 USDC » @PENGUN 
+$183.97 USDC » @0x70C9 
+$157.01 USDC » @Falconhoof 
+$153.57 USDC » @Arz 
+$142.03 USDC » @klau5 
+$131.13 USDC » @DanielArmstrong 
+$114.88 USDC » @14si2o_Flint 
+$114.88 USDC » @JayshreeRAM 
+$114.88 USDC » Myd 
+$114.88 USDC » @hunter_w3b 
+$114.88 USDC » @invitedtea 
+$109.50 USDC » @asui 
+$101.73 USDC » mojito_auditor 
+$92.50 USDC » Infect3d 
+$85.84 USDC » 0xmystery 
+$85.84 USDC » @Shubham 
+$85.84 USDC » @deth 
+$77.77 USDC » @cccz 
+$72.66 USDC » @nonseodion 
+$71.32 USDC » @nocoder 
+$67.67 USDC » @deliriusz 
+$66.42 USDC » @0xanmol 
+$62.65 USDC » @alexzoid 
+$59.60 USDC » @auditism 
+$59.60 USDC » @NentoR 
+$52.11 USDC » @smiling_heretic 
+$46.85 USDC » @Neon2835 
+$46.85 USDC » @zhaojohnson 
+$42.24 USDC » @gesha17 
+$39.54 USDC » @neo.crao 
+$35.78 USDC » @0xnev 
+$35.78 USDC » @ast3ros 
+$35.78 USDC » @mahdikarimi 
+$35.78 USDC » @peter 
+$33.46 USDC » @Varun_05
+
+
+[02/09/2024 20:47] thebrittfactor
+$30.41 USDC » The-Seraphs (@pxng0lin, @solsaver, @zzebra83)
+$30.41 USDC » @Timenov 
+$30.41 USDC » @thank_you 
+$30.41 USDC » @twcctop 
+$27.75 USDC » whitehat-boys (@Viraz, @Tripathi)
+$23.86 USDC » @0xaltego 
+$23.86 USDC » @Timeless 
+$20.82 USDC » @Bauchibred 
+$20.82 USDC » @EloiManuel 
+$20.82 USDC » @ZanyBonzy 
+$20.82 USDC » @hals 
+$20.82 USDC » @nadin 
+$20.82 USDC » @tsvetanovv 
+$15.21 USDC » @mussucal 
+$6.82 USDC » @0x_6a70 
+$6.82 USDC » @0xfave ⨀ 
+$6.82 USDC » @Mike_Bello 
+$6.82 USDC » @zhaojie 
+$3.05 USDC » @0xdice91 
+$3.05 USDC » @0xivas 
+$3.05 USDC » @KupiaSec 
+$3.05 USDC » @Stormreckson⛈ 
+$3.05 USDC » @Sweet Dream 
+$3.05 USDC » @XDZIBECX 
+$3.05 USDC » @cats 
+$3.05 USDC » @0xBitcoin 
+$3.05 USDC » @imare 
+$3.05 USDC » @jasonxiale 
+$3.05 USDC » @wangxx2026
+
+🏁 Findings summary
+-------------------------------------
+High risk findings: 4 unique (91 total)
+Med risk findings: 25 unique (185 total)
+QA reports: 23 (Best: SBSecurity)
+Advanced analysis reports: 10 (Best: Sathish9098)
+
+Awards will be distributed on Polygon within the next week. Congratulations all!  💸 💸 💸
+
+*Note: If you participated in this audit and don’t see your name on this list, please wait until the report is published and the findings repo is made public to check on your submissions.*
+
+
+[02/09/2024 20:52] haxatron1
+This looks like a case of too many issues diluting the pot again
+
+{Reactions}
+👀 ✅ 
+
+[02/09/2024 20:52] haxatron1
+Congrats everyone!
+
+
+[02/09/2024 20:58] gladita
+are the findings up anywhere so we can see what was validated
+
+
+[02/09/2024 20:59] gladita
+I went to the ecg page on cide4arena but i don't see where the findings are listed: https://code4rena.com/audits/2023-12-ethereum-credit-guild
+
+{Embed}
+https://code4rena.com/audits/2023-12-ethereum-credit-guild
+Ethereum Credit Guild | Code4rena
+$90,500 in USDC
+11 December 8:00 PM—28 December 8:00 PM
+Code4rena - ARCHIVE-Q4-2023 - ethcreditguild-dec11 [1178757898218774619].txt_Files/c4-og-banner-FE15E.png
+
+
+[02/09/2024 20:59] haxatron1
+Hey theres no way without backstage but you can check the diff here https://github.com/volt-protocol/ethereum-credit-guild/commits/main/
+
+{Embed}
+https://github.com/volt-protocol/ethereum-credit-guild/commits/main/
+Commits · volt-protocol/ethereum-credit-guild
+A decentralized savings and credit system. Contribute to volt-protocol/ethereum-credit-guild development by creating an account on GitHub.
+Code4rena - ARCHIVE-Q4-2023 - ethcreditguild-dec11 [1178757898218774619].txt_Files/ethereum-credit-guild-E130F
+
+
+[02/09/2024 20:59] haxatron1
+It should have the mitigations, from there you can guess the issues
+
+
+[02/09/2024 21:00] gladita
+so there's no way for me to see which of my findings were validated or appeal (if applicable)
+
+
+[02/09/2024 21:00] haxatron1
+Yep
+
+
+[02/09/2024 21:00] haxatron1
+Unless you have backstage
+
+
+[02/09/2024 21:01] gladita
+wow that sucks
+
+
+[02/09/2024 21:02] haxatron1
+I agree
+
+
+[02/09/2024 21:03] haxatron1
+You can wait until the report comes out which will take 1 month i guess
+
+
+[02/09/2024 21:05] 0xjuancito
+gg @EV_om ✌️
+
+{Reactions}
+❤️ 
+
+[02/09/2024 21:14] ev_om
+Thanks @juancito! Congrats everyone 🥳
+
+{Reactions}
+❤️ (4) 
+
+[02/09/2024 21:15] blckhv
+Congrats, it was a tough one 😄
+
+
+[02/09/2024 21:20] 0xpessimist
+Congrats everyone! 🥳
+
+{Reactions}
+🔥 (2) 
+
+[02/09/2024 21:28] natzuu33
+Congrats everyone!
+
+{Reactions}
+🔥 (3) 
+
+[02/09/2024 23:02] nisedo
+Congrats @JCN !!! 👑
+
+{Reactions}
+🫡 
+
+[02/09/2024 23:45] 0xdemonnn
+Congrats everyone 🔥🔥🔥
+
+
+[02/10/2024 00:27] 0xstalin
+Congrats everyone :hi5:
+
+
+[02/10/2024 02:50] onetruekirk
+Thank you from the bottom of my heart to everyone who participated in our audit. It is thanks to your efforts that after a year long journey to design and implement this system, we will be able to sleep soundly following deployment. We are officially public audit maximalists now, and you can expect us to return in a few months for an audit of a batch of customized lending terms and auction house behaviors. We hope that some of the wardens who participated in this audit will join us then and leverage the experience gained in this audit round.
+
+{Reactions}
+🫡 (21) 🖖🏼 (4) ❤️ (8) 
+
+[02/10/2024 03:34] hisoul22
+Thanks for choosing C4 @OneTrueKirk @Eswak
+
+{Reactions}
+🫡 
+
+[02/10/2024 07:26] infectedfuture
+Well done everyone! 🎉 
+Was expecting a bit more, but hey, still I'm very happy with what I've found 
+Waiting for the update contest now 🫡
+
+{Reactions}
+💪 (2) 
+
+[02/10/2024 07:52] santipu_
+Congrats to all participants! 🎉🔥
+
+
+[02/10/2024 16:06] onetruekirk
+I know the rewards pot was fairly diluted in this audit, and we got a ton of value out of it based on the number of findings and duplicates. Therefore, we’ve been discussing internally about offering an additional reward for wardens.
+
+I am pleased to share that we will offer a bonus of GUILD governance tokens after launch to wardens who found medium or high vulnerabilities proportional to your contest award. Please keep in mind that like MORPHO tokens, GUILD will be nontransferable in the initial period, but will be usable for in protocol staking and governance to earn yield and additional token rewards. If you found a medium or high and wish to receive GUILD tokens, please DM me with your preferred recipient address.
+
+Regardless of your findings, thank you again to everyone for participating, and we hope you will join in our future audit rounds.
+
+{Reactions}
+💜 (55) 🔥 (42) 🤗 (2) 
+
+[02/17/2024 15:03] onetruekirk
+Just wanted to clarify that tokens will be distributed on Arbitrum upon protocol launch, so if you haven't messaged me yet, you still have time. I think I responded to all messages as of today. If I didn't respond to your message yet (I get a lot of spam DMs so I may miss some), please just ping me in this channel saying "check DM"
+
+{Reactions}
+🎉 (7) 🫡 (2) 
+
+[02/19/2024 05:28] bradmoon
+I submitted a bug but why didn't I receive feedback? There should be hits at the same time, but I can't see my name
+
+
+[02/19/2024 18:19] 0xbepresent
+check DM 😉 🙏🏼
+
+{Reactions}
+🙏 
+
+[02/19/2024 18:19] onetruekirk
+Please contact the code4rena team if you think a submission was missed or erroneously dismissed as low quality
+
+
+[02/20/2024 14:50] distbit
+wen findings repo 🙂
+
+
+[02/20/2024 22:05] rbserver
+Please check dm :thankyou:
+
+
+[02/21/2024 06:16] onetruekirk
+Last I heard from code4rena team we can expect the full audit report in 2-3 weeks
+
+{Reactions}
+👍 (2) 
+
+[02/21/2024 06:16] onetruekirk
+We are likewise eager to have the full details available publicly
+
+
+[02/21/2024 06:31] distbit
+c4r, pls release individual feedback on a warden's own reports to non-backstage wardens earlier. would significantly improve warden ux, imo. thx! 🙂
+
+
+[02/21/2024 18:07] onetruekirk
+I’ll bump this to the team in our private channel 🙏
+
+
+[02/22/2024 05:26] distbit
+thank you very much! 🙂
+
+
+[02/22/2024 15:07] thebrittfactor
+We are brainstorming internally in effort to find the best way to tackle this. We appreciate the feedback 🙂
+
+
+[02/23/2024 15:39] distbit
+Awesome, looking forward to the improved ux in the future. It would definitely be nice to not need to wait > 2 months before seeing the assessment of my report 👌 
+
+many thx ser
+
+
+[02/24/2024 02:51] itsmetechjay
+ℹ️ This channel is pending archive.  As a result, any private threads will be permanently deleted on Saturday, 02 March 2024. Please make sure to grab anything you might need from those before then.
+
+
+[02/25/2024 00:06] onetruekirk
+One or two people sent me their Arbitrum address in a private thread instead of DM, if this is you please resend in direct message. Will make the same announcement on Twitter also 🙏
+
+
+==============================================================
+Exported 822 message(s)
+==============================================================
